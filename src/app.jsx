@@ -1,7 +1,15 @@
 import React from 'react';
+import Onboarding from './components/onboarding/Onboarding';
+import GlobalStyles from './styles/GlobalStyles';
+import { BrowserRouter } from 'react-router-dom';
 
 const App = props => {
-   return <img src="./assets/onboarding-reading-book.png" alt="img" />;
+   return (
+      <BrowserRouter>
+         <GlobalStyles />
+         <Onboarding />
+      </BrowserRouter>
+   );
 };
 
 export default App;
