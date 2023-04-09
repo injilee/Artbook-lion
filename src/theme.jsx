@@ -3,6 +3,7 @@ const palette = {
    lightOrange: '#FFEEE8',
    white: '#FFFFFF',
    black: '#000000',
+   gray: '#757575',
    lightGray: '#EBEBEB',
    ghostGray: '#F9FAFB',
    midnight: '#001B45',

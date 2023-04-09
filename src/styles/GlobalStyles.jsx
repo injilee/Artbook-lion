@@ -30,9 +30,10 @@ const GlobalStyles = createGlobalStyle`
   }
 
   button{
+    display:block;
     border:none;
     background-color:transparent;
-   cursor: pointer;
+    cursor: pointer;
   }
 
 `;

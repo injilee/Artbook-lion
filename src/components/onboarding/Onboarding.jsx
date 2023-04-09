@@ -1,12 +1,18 @@
 import React, { createRef, useEffect, useState } from 'react';
 import * as S from './Onboarding.style';
 import dataOnboarding from './DataOnboarding';
+import { useNavigate } from 'react-router-dom';
 
 const Onboarding = () => {
-   const [count, setCount] = useState(0);
    const listRef = createRef();
+   const [count, setCount] = useState(0);
+
+   const navigete = useNavigate();
 
    const prevBtn = () => {
+      if (count === 0) {
+         return;
+      }
       listRef.current.scrollTo({
          left: listRef.current.offsetWidth - listRef.current.scrollLeft,
          behavior: 'smooth',
@@ -47,7 +53,7 @@ const Onboarding = () => {
             ))}
          </S.OnboardContent>
          {count === 2 ? (
-            <S.StartBtn>Get Started!</S.StartBtn>
+            <S.StartBtn onClick={() => navigete('/login')}>Get Started!</S.StartBtn>
          ) : (
             <S.OnboardFooter>
                <button type="button" onClick={prevBtn}>

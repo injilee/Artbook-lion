@@ -71,7 +71,6 @@ export const OnboardSwiper = styled.div`
       background-color: ${props => props.theme.palette.white};
       margin-right: 0.5rem;
       transition: width 0.1s ease-in-out;
-      cursor:pointer;
    }
 
    & > span:nth-child(1) {
