@@ -4,6 +4,13 @@ import Onboarding from '../components/onboarding/Onboarding';
 import Error from '../components/error/Error';
 import Login from '../components/login/Login';
 import SignIn from '../components/signin/SignIn';
+import Home from './home/Home';
+import Notice from './notice/Notice';
+import Community from './community/Community';
+import Post from './post/Post';
+import Search from './search/Search';
+import Profile from './profile/Profile';
+import bookData from '../components/recommendBook/RecommendBook';
 
 const Pages = () => {
    return (
@@ -12,6 +19,12 @@ const Pages = () => {
          <Route path="/*" element={<Error />}></Route>
          <Route path="/login" element={<Login />}></Route>
          <Route path="/signin" element={<SignIn />}></Route>
+         <Route path="/home" element={<Home bookData={bookData} />}></Route>
+         <Route path="/search" element={<Search />}></Route>
+         <Route path="/notice" element={<Notice />}></Route>
+         <Route path="/community" element={<Community />}></Route>
+         <Route path="/profile" element={<Profile />}></Route>
+         <Route path="/post" element={<Post />}></Route>
       </Routes>
    );
 };
