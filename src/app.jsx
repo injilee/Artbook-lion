@@ -3,7 +3,7 @@ import GlobalStyles from './styles/GlobalStyles';
 import { BrowserRouter } from 'react-router-dom';
 import Pages from './pages/Pages';
 
-const App = props => {
+const App = () => {
    return (
       <BrowserRouter>
          <GlobalStyles />

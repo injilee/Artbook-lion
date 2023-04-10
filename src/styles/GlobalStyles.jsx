@@ -10,12 +10,8 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body{
-    display:flex;
-    justify-content:center;
-    align-items:center;
     background-color:#F9FAFB;
     font-family:Pretendard, sans-serif;
-    margin:0 auto;
   }
 
   :is(ul, ol, li){
