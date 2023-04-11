@@ -1,10 +1,11 @@
 import React from 'react';
 import { AiOutlineNotification, AiOutlineComment, AiOutlineUser } from 'react-icons/ai';
-import lion from '../../assets/home-logo.png';
+import lion from '../../assets/lion-img.png';
 import { BsSearch } from 'react-icons/bs';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
+   max-width: 26.25rem;
    position: fixed;
    bottom: 0;
    width: 100%;
@@ -26,7 +27,7 @@ const List = styled.li`
    justify-content: center;
    align-items: center;
    color: ${props => props.theme.palette.gray};
-   padding: 0.9375rem 0;
+   padding: 0.3125rem 0;
    cursor: pointer;
 
    &:hover {
@@ -40,15 +41,15 @@ const List = styled.li`
 `;
 
 const HomeLionImg = styled.img.attrs({ src: lion, alt: '홈으로 가기' })`
-   width: 2rem;
-   height: 2rem;
+   width: 1.625rem;
+   height: 1.625rem;
 `;
 
 const NavBarLink = styled.button`
    color: ${props => props.theme.palette.gray};
 
    & > svg {
-      font-size: 1.625rem;
+      font-size: 1.25rem;
    }
 `;
 

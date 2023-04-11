@@ -11,6 +11,7 @@ import Post from './post/Post';
 import Search from './search/Search';
 import Profile from './profile/Profile';
 import bookData from '../components/recommendBook/RecommendBook';
+import noticeData from '../pages/notice/NoticeInfo';
 
 const Pages = () => {
    return (
@@ -21,7 +22,7 @@ const Pages = () => {
          <Route path="/signin" element={<SignIn />}></Route>
          <Route path="/home" element={<Home bookData={bookData} />}></Route>
          <Route path="/search" element={<Search />}></Route>
-         <Route path="/notice" element={<Notice />}></Route>
+         <Route path="/notice" element={<Notice noticeData={noticeData} />}></Route>
          <Route path="/community" element={<Community />}></Route>
          <Route path="/profile" element={<Profile />}></Route>
          <Route path="/post" element={<Post />}></Route>

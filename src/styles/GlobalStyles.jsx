@@ -10,6 +10,9 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
     background-color:#F9FAFB;
     font-family:Pretendard, sans-serif;
   }
@@ -21,7 +24,6 @@ const GlobalStyles = createGlobalStyle`
   }
 
   img{
-    width:100%;
     display:block;
   }
 
