@@ -1,4 +1,38 @@
 import styled from 'styled-components';
+// import bannerArrow from '../../assets/Arrow-Right2.png';
+
+/* header */
+export const Header = styled.div`
+   max-width: 26.25rem;
+   position: fixed;
+   top: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   height: 3.4375rem;
+   border-bottom: 1px solid ${props => props.theme.palette.lightGray};
+   background-color: ${props => props.theme.palette.white};
+
+   @media screen and (max-width: 419px) {
+      width: 100vw;
+   }
+`;
+
+export const HeaderBackBtn = styled.div`
+   position: absolute;
+   top: 1.2rem;
+   left: 0.875rem;
+
+   & > svg {
+      user-select: none;
+   }
+`;
+
+export const HeaderTitle = styled.h1`
+   font-size: 1.25rem;
+   font-weight: 500;
+`;
 
 /* home */
 export const Wrapper = styled.section`
@@ -8,53 +42,9 @@ export const Wrapper = styled.section`
    align-items: center;
    background-color: ${props => props.theme.palette.white};
    padding: 4.375rem 1.875rem;
-`;
 
-/* recommend-Book */
-export const RecommendBook = styled.article`
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-
-   & > h2 {
-      font-size: 1.2rem;
-      font-weight: 500;
-      margin-bottom: 1.25rem;
-   }
-`;
-
-export const ImgBox = styled.div`
-   width: 12.5rem;
-   margin-bottom: 1.5625rem;
-
-   & > img {
-      width: 100%;
-   }
-`;
-
-export const BookDetail = styled.div`
-   border-radius: 1.25rem;
-   background-color: ${props => props.theme.palette.lightPink};
-   padding: 1.5625rem 1.875rem;
-   margin-bottom: 2.8125rem;
-`;
-
-export const BookTitle = styled.p`
-   font-size: 1.25rem;
-   font-weight: 600;
-   margin-bottom: 0.625rem;
-`;
-
-export const BookDescription = styled.div`
-   font-size: 1.1rem;
-   font-weight: 400;
-   line-height: 1.6rem;
-
-   & > strong {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
+   @media screen and (max-width: 419px) {
+      padding: 4.375rem 1rem;
    }
 `;
 
@@ -63,12 +53,18 @@ export const NoticeWrapper = styled.article`
    display: flex;
    flex-direction: column;
    width: 100%;
-   margin-bottom: 2.8125rem;
+   margin-bottom: 2.5rem;
 
    & > h3 {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 600;
       margin-bottom: 1.2rem;
+   }
+
+   @media screen and (max-width: 419px) {
+      & > h3 {
+         font-size: 1.2rem;
+      }
    }
 `;
 
@@ -78,11 +74,49 @@ export const NoticeContent = styled.div`
    padding: 1.0625rem 0.9375rem;
 `;
 
-export const NoticeBox = styled.ul``;
-
 export const NoticeList = styled.li`
    & > p {
-      font-size: 1rem;
+      font-size: 0.9rem;
       font-weight: 400;
+   }
+`;
+
+/* banner */
+export const Banner = styled.article`
+   width: 100%;
+   height: 5.25rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: 2.5rem;
+   border-radius: 0.625rem;
+   background-color: ${props => props.theme.palette.darkPurple};
+`;
+
+export const BannerWrap = styled.div`
+   width: 100%;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+`;
+
+export const BannerText = styled.div`
+   & > p {
+      width: 8.125rem;
+      font-weight: 500;
+      color: ${props => props.theme.palette.white};
+   }
+`;
+
+export const BannerBtn = styled.button`
+   background-color: ${props => props.theme.palette.white};
+   border-radius: 0.3125rem;
+
+   & > span {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: ${props => props.theme.palette.pastelPurple};
+      padding: 0.75rem 1rem;
    }
 `;

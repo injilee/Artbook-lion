@@ -1,45 +1,53 @@
 import React from 'react';
 import NavigationBar from '../../components/navigation-bar/NavigationBar';
-import MainHeader from '../../components/header/main-header/MainHeader';
 import * as S from './Home.style';
 import AnotherMenu from './another-menu/AnotherMenu';
 import Communities from './Communities/Communities';
+import SuggestBook from './suggestBook/SuggestBook';
+import { MdArrowBackIos } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 
 const Home = ({ bookData }) => {
-   const getBook = bookData.filter(value => value.id === 4);
+   const navigate = useNavigate();
+   const backPage = () => {
+      navigate(-1);
+   };
 
    return (
       <>
-         <MainHeader />
+         <S.Header>
+            <S.HeaderBackBtn>
+               <button aria-label="이전으로 돌아가기" onClick={backPage}>
+                  <MdArrowBackIos></MdArrowBackIos>
+               </button>
+            </S.HeaderBackBtn>
+            <S.HeaderTitle>그림책 라이언</S.HeaderTitle>
+         </S.Header>
          <S.Wrapper>
-            <S.RecommendBook>
-               <h2>{getBook[0].id}월 추천 그림책</h2>
-               <S.ImgBox>
-                  <img src={getBook[0].src} alt={getBook[0].alt} />
-               </S.ImgBox>
-               <S.BookDetail>
-                  <S.BookTitle>
-                     {getBook[0].title} {getBook[0].athor}
-                  </S.BookTitle>
-                  <S.BookDescription>
-                     <strong>{getBook[0].description[0]}</strong>
-                     <p>{getBook[0].description[1]}</p>
-                  </S.BookDescription>
-               </S.BookDetail>
-            </S.RecommendBook>
+            <SuggestBook bookData={bookData} />
             <S.NoticeWrapper>
                <h3>라이언 소식</h3>
                <S.NoticeContent>
-                  <S.NoticeBox>
+                  <ul>
                      <S.NoticeList>
                         <p>[전시] 볼로냐 일러스트 원화전 2022</p>
                      </S.NoticeList>
                      <S.NoticeList>
                         <p>[공지] 그림책 라이언이 뭐에요?</p>
                      </S.NoticeList>
-                  </S.NoticeBox>
+                  </ul>
                </S.NoticeContent>
             </S.NoticeWrapper>
+            <S.Banner>
+               <S.BannerWrap>
+                  <S.BannerText>
+                     <p>독서노트 작성하고 그림책 평가하기</p>
+                  </S.BannerText>
+                  <S.BannerBtn>
+                     <span>작성하러 가기</span>
+                  </S.BannerBtn>
+               </S.BannerWrap>
+            </S.Banner>
             <Communities />
             <AnotherMenu />
          </S.Wrapper>
