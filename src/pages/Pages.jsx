@@ -10,8 +10,9 @@ import Community from './community/Community';
 import Post from './post/Post';
 import Search from './search/Search';
 import Profile from './profile/Profile';
-import bookData from '../components/recommendBook/RecommendBook';
+import bookData from './home/suggestBook/SuggestBookData';
 import noticeData from '../pages/notice/NoticeInfo';
+import ProfileEdit from './profile/edit/ProfileEdit';
 
 const Pages = () => {
    return (
@@ -25,6 +26,7 @@ const Pages = () => {
          <Route path="/notice" element={<Notice noticeData={noticeData} />}></Route>
          <Route path="/community" element={<Community />}></Route>
          <Route path="/profile" element={<Profile />}></Route>
+         <Route path="/profile/:id/edit" element={<ProfileEdit />}></Route>
          <Route path="/post" element={<Post />}></Route>
       </Routes>
    );
