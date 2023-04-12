@@ -1,4 +1,4 @@
-import AprilBook from '../../assets/sample-book1.png';
+import AprilBook from '../../../assets/sample-book1.png';
 
 const monthBook = [
    {
