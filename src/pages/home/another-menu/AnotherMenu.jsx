@@ -12,7 +12,7 @@ const AnotherWrapper = styled.article`
    margin-bottom: 2.8125rem;
 
    & > h3 {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 600;
       margin-bottom: 1.2rem;
    }
@@ -22,27 +22,27 @@ const AnotherContent = styled.ul`
    display: flex;
    flex-direction: row;
    overflow-x: scroll;
-   -ms-overflow-style:none;
-   scrollbar-width:none;
+   -ms-overflow-style: none;
+   scrollbar-width: none;
 
-   &::-webkit-scrollbar{
-      display:none;
+   &::-webkit-scrollbar {
+      display: none;
    }
 
    & > li:nth-child(1) {
-      background-color: ${props => props.theme.palette.lightPink}};
+      background-color: ${props => props.theme.palette.lightPink};
    }
 
    & > li:nth-child(2) {
-      background-color: ${props => props.theme.palette.lightGreen}};
+      background-color: ${props => props.theme.palette.lightGreen};
    }
 
    & > li:nth-child(3) {
-      background-color: ${props => props.theme.palette.lightYellow}};
+      background-color: ${props => props.theme.palette.lightYellow};
    }
 
    & > li:nth-child(4) {
-      background-color: ${props => props.theme.palette.lightBlue}};
+      background-color: ${props => props.theme.palette.lightBlue};
    }
 `;
 
@@ -73,6 +73,7 @@ const AnotherBtn = styled.div`
    & > span {
       text-align: center;
       white-space: nowrap;
+      font-size: 0.9rem;
    }
 `;
 

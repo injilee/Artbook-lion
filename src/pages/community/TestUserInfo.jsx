@@ -1,8 +1,8 @@
-import testUser from '../../../assets/test-user-img.jpg';
-import defaultProfile from '../../../assets/lion-img.png';
-import sampleBook1 from '../../../assets/sample-book2.png';
-import sampleBook2 from '../../../assets/sample-book3.png';
-import sampleBook3 from '../../../assets/sample-book4.png';
+import testUser from '../../assets/test-user-img.jpg';
+import defaultProfile from '../../assets/lion-img.png';
+import sampleBook1 from '../../assets/sample-book2.png';
+import sampleBook2 from '../../assets/sample-book3.png';
+import sampleBook3 from '../../assets/sample-book4.png';
 
 const testUserInfo = [
    {

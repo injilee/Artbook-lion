@@ -3,6 +3,7 @@ import { AiOutlineNotification, AiOutlineComment, AiOutlineUser } from 'react-ic
 import lion from '../../assets/lion-img.png';
 import { BsSearch } from 'react-icons/bs';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const Wrapper = styled.div`
    max-width: 26.25rem;
@@ -54,34 +55,36 @@ const NavBarLink = styled.button`
 `;
 
 const NavigationBar = () => {
+   const navigate = useNavigate();
+
    return (
       <Wrapper>
          <NavBar>
-            <List>
+            <List onClick={() => navigate('/notice')}>
                <NavBarLink>
                   <AiOutlineNotification />
                </NavBarLink>
                <span>공지사항</span>
             </List>
-            <List>
+            <List onClick={() => navigate('/search')}>
                <NavBarLink>
                   <BsSearch />
                </NavBarLink>
                <span>검색</span>
             </List>
-            <List>
+            <List onClick={() => navigate('/home')}>
                <NavBarLink>
                   <HomeLionImg />
                </NavBarLink>
                <span>홈</span>
             </List>
-            <List>
+            <List onClick={() => navigate('/community')}>
                <NavBarLink>
                   <AiOutlineComment />
                </NavBarLink>
                <span>커뮤니티</span>
             </List>
-            <List>
+            <List onClick={() => navigate('/profile')}>
                <NavBarLink>
                   <AiOutlineUser />
                </NavBarLink>
