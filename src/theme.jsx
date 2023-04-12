@@ -11,6 +11,10 @@ const palette = {
    lightGreen: '#EFF7EE',
    lightYellow: '#FFF8EB',
    lightBlue: '#EBF2FF',
+   pastelPurple: '#9E9BC7',
+   darkPurple: '#a3a0ca',
+   inputBox: '#F4F4F4',
+   buttonGray: '#CFCFCF',
 };
 
 const theme = {
