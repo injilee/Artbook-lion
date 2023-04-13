@@ -33,8 +33,8 @@ export const HeaderTitle = styled.h1`
    font-weight: 500;
 `;
 
-/* notice */
-export const NoticeWrapper = styled.section`
+/* search */
+export const SearchWrapper = styled.section`
    max-width: 26.25rem;
    width: 26.25rem;
    height: 100vh;
@@ -43,37 +43,27 @@ export const NoticeWrapper = styled.section`
    align-items: center;
    background-color: ${props => props.theme.palette.white};
    padding: 4.375rem 1.875rem;
+
+   @media screen and (max-width: 419px) {
+      width: 100vw;
+      padding: 4.375rem 1rem;
+   }
 `;
 
-export const NoticeContent = styled.ul`
+export const SearchBox = styled.div`
    width: 100%;
-`;
-
-export const NoticeList = styled.li`
    display: flex;
-   justify-content: space-between;
-   border-top: 1px solid ${props => props.theme.palette.gray};
-   padding-top: 0.7rem;
-   margin-bottom: 1.7rem;
-   cursor: pointer;
+   justify-content: center;
+   align-items: center;
 
-   & > button {
+   & > input {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 0.625rem;
+      background-color: ${props => props.theme.palette.inputBox};
    }
 `;
 
-export const NoticeTitle = styled.div`
-   display: flex;
-   flex-direction: column;
-
-   & > h2 {
-      margin-bottom: 0.5rem;
-      font-size: 1rem;
-      font-weight: 500;
-   }
-
-   & > span {
-      font-family: 'Signika', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 300;
-   }
-`;
+// export const SearchBar = styled.div`
+// `;

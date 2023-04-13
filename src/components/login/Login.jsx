@@ -18,7 +18,7 @@ const Login = () => {
             <S.LoginInput placeholder="Password" type="password" />
          </S.LoginInputBox>
          <S.LoginBtn>
-            <button>로그인</button>
+            <button onClick={() => navigator('/home')}>로그인</button>
             <S.LoginOthers>
                <p>이메일로 회원가입하기</p>
                <span onClick={() => navigator('/signin')}>Sign in</span>

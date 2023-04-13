@@ -3,12 +3,16 @@ import styled from 'styled-components';
 export const OnboardWrapper = styled.section`
    display: flex;
    flex-direction: column;
-   max-width: 25rem;
+   max-width: 26.25rem;
+
+   @media screen and (max-width: 419px) {
+      width: 100vw;
+   }
 `;
 
 export const OnboardContent = styled.ul`
    display: flex;
-   height: calc(100vh - 90px);
+   height: 100vh;
    overflow: hidden;
    background-color: ${props => props.theme.palette.lightOrange};
 
@@ -18,8 +22,12 @@ export const OnboardContent = styled.ul`
 `;
 
 export const OnboardImgBox = styled.div`
-   width: 400px;
+   width: 420px;
    background-color: ${props => props.theme.palette.white};
+
+   @media screen and (max-width: 419px) {
+      width: 100vw;
+   }
 `;
 
 export const OnboardImage = styled.img.attrs(props => ({
@@ -46,10 +54,13 @@ export const OnboardDetail = styled.div`
 `;
 
 export const OnboardFooter = styled.div`
+   position: fixed;
+   bottom: 0;
    display: flex;
    justify-content: space-between;
    align-items: center;
-   padding: 2.0625rem 0;
+   width: 26.25rem;
+   padding: 1.5rem 0;
    background-color: ${props => props.theme.palette.lightOrange};
 
    & > button {
@@ -57,6 +68,14 @@ export const OnboardFooter = styled.div`
       font-weight: 600;
       color: ${props => props.theme.palette.lionRed};
       margin: 0 1.2rem;
+   }
+
+   @media screen and (max-width: 419px) {
+      width: 100vw;
+
+      & > button {
+         margin: 0 0.5rem;
+      }
    }
 `;
 
@@ -85,13 +104,19 @@ export const OnboardSwiper = styled.div`
 `;
 
 export const StartBtn = styled.button`
+   position: fixed;
+   bottom: 0;
    display: flex;
    justify-content: center;
    align-items: center;
-   width: 25rem;
+   width: 26.25rem;
    height: 3.75rem;
    font-size: 1.25rem;
    font-weight: 600;
    color: ${props => props.theme.palette.white};
    background-color: ${props => props.theme.palette.lionRed};
+
+   @media screen and (max-width: 419px) {
+      width: 100vw;
+   }
 `;

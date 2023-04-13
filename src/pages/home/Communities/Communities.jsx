@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import testUserInfo from '../../community/TestUserInfo';
+import { useNavigate } from 'react-router-dom';
 
 const CommuWrapper = styled.article`
    display: flex;
@@ -142,11 +143,13 @@ const PostCommentBook = styled.div`
 `;
 
 const Communities = () => {
+   const navigate = useNavigate();
+
    return (
       <CommuWrapper>
          <CommuHeader>
             <h3>커뮤니티</h3>
-            <span>View All</span>
+            <span onClick={() => navigate('/community')}>View All</span>
          </CommuHeader>
          <ul>
             <PostList>

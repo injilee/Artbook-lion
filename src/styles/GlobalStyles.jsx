@@ -10,8 +10,17 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body{
+    display:flex;
+    justify-content:center;
     background-color:#F9FAFB;
     font-family:Pretendard, sans-serif;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+ 
+    &::-webkit-scrollbar {
+       display: none;
+    }
   }
 
   :is(ul, ol, li){

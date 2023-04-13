@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-// import bannerArrow from '../../assets/Arrow-Right2.png';
+import bannerArrow from '../../assets/Arrow-Right2.png';
 
 /* header */
 export const Header = styled.div`
@@ -118,5 +118,12 @@ export const BannerBtn = styled.button`
       font-weight: 600;
       color: ${props => props.theme.palette.pastelPurple};
       padding: 0.75rem 1rem;
+
+      &:after {
+         content: url(${bannerArrow});
+         width: 100%;
+         height: 100%;
+         margin-left: 0.5rem;
+      }
    }
 `;
