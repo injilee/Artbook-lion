@@ -29,6 +29,13 @@ export const SignInInputBox = styled.div`
    display: flex;
    flex-direction: column;
    margin-bottom: 1.5rem;
+
+   & > p {
+      font-size: 0.9rem;
+      color: ${props => props.theme.palette.lionRed};
+      margin-top: -0.7rem;
+      margin-bottom: 1rem;
+   }
 `;
 
 export const SignInInput = styled.input.attrs(props => ({ placeholderTextColor: props.theme.palette.black }))`
@@ -37,8 +44,8 @@ export const SignInInput = styled.input.attrs(props => ({ placeholderTextColor: 
    border: 1px solid rgba(0, 0, 0, 0.1);
    border-radius: 0.3125rem;
    background-color: ${props => props.theme.palette.white};
-   padding: 0.9375rem 1.0625rem 0.9375rem 1.0625rem;
-   margin-bottom: 0.8125rem;
+   padding: 0.9375rem 1.0625rem 0.9375rem;
+   margin-bottom: 1rem;
 
    &:focus {
       outline: none;
@@ -59,7 +66,7 @@ export const SignInBtn = styled.div`
       font-weight: 500;
       border-radius: 0.4375rem;
       color: ${props => props.theme.palette.white};
-      background-color: ${props => props.theme.palette.lionRed};
+      background-color: ${props => (props.checked ? props.theme.palette.lionRed : props.theme.palette.buttonGray)};
       margin-bottom: 1rem;
    }
 `;
