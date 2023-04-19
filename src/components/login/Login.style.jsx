@@ -29,6 +29,13 @@ export const LoginInputBox = styled.div`
    display: flex;
    flex-direction: column;
    margin-bottom: 1.5rem;
+
+   & > p {
+      font-size: 0.9rem;
+      color: ${props => props.theme.palette.lionRed};
+      margin-top: -0.7rem;
+      margin-bottom: 1rem;
+   }
 `;
 
 export const LoginInput = styled.input.attrs(props => ({ placeholderTextColor: props.theme.palette.black }))`
@@ -59,7 +66,7 @@ export const LoginBtn = styled.div`
       font-weight: 500;
       border-radius: 0.4375rem;
       color: ${props => props.theme.palette.white};
-      background-color: ${props => props.theme.palette.lionRed};
+      background-color: ${props => (props.checked ? props.theme.palette.lionRed : props.theme.palette.buttonGray)};
       margin-bottom: 1rem;
    }
 `;
