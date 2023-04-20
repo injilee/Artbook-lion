@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import HomeIcon1 from '../../../assets/home-icon1.png';
 import HomeIcon2 from '../../../assets/home-icon2.png';
@@ -22,8 +22,15 @@ const AnotherContent = styled.ul`
    display: flex;
    flex-direction: row;
    overflow-x: scroll;
-   -ms-overflow-style: none;
    scrollbar-width: none;
+   user-select: none;
+   transition: all 0.3s ease;
+   -ms-overflow-style: none;
+   -webkit-touch-callout: none;
+   -webkit-user-select: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
 
    &::-webkit-scrollbar {
       display: none;
@@ -68,6 +75,7 @@ const AnotherBtn = styled.div`
    & > img {
       height: 40px;
       margin-bottom: 0.625rem;
+      -webkit-user-drag: none;
    }
 
    & > span {
@@ -78,10 +86,50 @@ const AnotherBtn = styled.div`
 `;
 
 const AnotherMenu = () => {
+   const containerRef = useRef(null);
+   const [startX, setStartX] = useState('');
+   const [position, setposition] = useState('');
+   const [isScroll, setIsScroll] = useState('');
+
+   const handleScrollMove = e => {
+      const x = position + startX - e.clientX;
+      if (isScroll) {
+         containerRef.current.scrollLeft = `${x}`;
+      }
+      return;
+   };
+
+   const handleMouseEvent = (e, scroll) => {
+      switch (scroll) {
+         case 'start':
+            setStartX(e.clientX);
+            setIsScroll(true);
+            break;
+
+         case 'end':
+            setposition(containerRef.current.scrollLeft);
+            setIsScroll(false);
+            break;
+
+         case 'leave':
+            setIsScroll(false);
+            break;
+
+         default:
+            break;
+      }
+   };
+
    return (
       <AnotherWrapper>
          <h3>더 많은 서비스</h3>
-         <AnotherContent>
+         <AnotherContent
+            ref={containerRef}
+            onMouseDown={e => handleMouseEvent(e, 'start')}
+            onMouseUp={e => handleMouseEvent(e, 'end')}
+            onMouseLeave={e => handleMouseEvent(e, 'leave')}
+            onMouseMove={handleScrollMove}
+         >
             <AnotherList>
                <AnotherBtn>
                   <img src={HomeIcon1} alt="메뉴 아이콘" />
