@@ -1,4 +1,4 @@
-import React, { createRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './SignIn.style';
 
@@ -16,9 +16,9 @@ const SignIn = ({ authService }) => {
 
    const checked = isValidateName && isValidateEmail && isValidatePassword;
 
-   const nameRef = createRef();
-   const emailRef = createRef();
-   const passwordRef = createRef();
+   const nameRef = useRef();
+   const emailRef = useRef();
+   const passwordRef = useRef();
 
    const nameRegex = /^[ㄱ-ㅎ가-힣a-zA-Z0-9_]+$/;
    const emailRegex = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
