@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './Notice.style';
 import { MdArrowBackIos } from 'react-icons/md';
-import { IoIosArrowDown } from 'react-icons/io';
+import { GrFormClose } from 'react-icons/gr';
 import { useNavigate } from 'react-router-dom';
 import NavigationBar from '../../components/navigation-bar/NavigationBar';
 import NoticeInfo from './NoticeInfo';
 
 const Notice = () => {
+   const [isCollapse, setIsCollapse] = useState(false);
+
    const navigate = useNavigate();
    const backPage = () => {
       navigate(-1);
+   };
+
+   const handleShowItem = index => {
+      if (isCollapse === index) {
+         return setIsCollapse(null);
+      }
+
+      setIsCollapse(index);
    };
 
    return (
@@ -24,19 +34,31 @@ const Notice = () => {
          </S.Header>
          <S.NoticeWrapper>
             <S.NoticeContent>
-               {NoticeInfo.map(value => (
-                  <S.NoticeList key={value.id}>
-                     <S.NoticeTitle>
-                        <h2>
-                           [{value.section}] {value.title}
-                        </h2>
-                        <span>{value.time}</span>
-                     </S.NoticeTitle>
-                     <button>
-                        <IoIosArrowDown />
-                     </button>
-                  </S.NoticeList>
-               ))}
+               {NoticeInfo.map((value, index) => {
+                  return (
+                     <S.NoticeList key={value.id}>
+                        <S.NoticeTitle onClick={() => handleShowItem(index)} key={index}>
+                           <div>
+                              <h2>
+                                 [{value.section}] {value.title}
+                              </h2>
+                              <span>{value.time}</span>
+                           </div>
+                           <S.SlideButton isCollapse={isCollapse === index ? true : false}>
+                              <GrFormClose />
+                           </S.SlideButton>
+                        </S.NoticeTitle>
+                        <S.ContentWrapper>
+                           {isCollapse === index ? (
+                              <S.Content>
+                                 {value.imageUrl ? <img src={value.imageUrl} alt={value.imageAlt} /> : ''}
+                                 <p>{value.content}</p>
+                              </S.Content>
+                           ) : null}
+                        </S.ContentWrapper>
+                     </S.NoticeList>
+                  );
+               })}
             </S.NoticeContent>
          </S.NoticeWrapper>
          <NavigationBar />
