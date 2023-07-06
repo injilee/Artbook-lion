@@ -1,10 +1,10 @@
-import React, { createRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import * as S from './Onboarding.style';
 import dataOnboarding from './DataOnboarding';
 import { useNavigate } from 'react-router-dom';
 
 const Onboarding = () => {
-   const listRef = createRef();
+   const listRef = useRef();
    const [count, setCount] = useState(0);
 
    const navigete = useNavigate();
