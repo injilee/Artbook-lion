@@ -10,7 +10,7 @@ const Wrapper = styled.div`
    position: fixed;
    bottom: 0;
    width: 100%;
-   border-top: 1px solid ${props => props.theme.palette.lightGray};
+   border-top: 2px solid ${props => props.theme.palette.lightGray};
    background-color: ${props => props.theme.palette.white};
 `;
 
@@ -18,8 +18,6 @@ const NavBar = styled.ul`
    display: flex;
    justify-content: space-around;
    align-items: center;
-
-   // background-color:${props => props.theme.palette.lightGray};
 `;
 
 const List = styled.li`
