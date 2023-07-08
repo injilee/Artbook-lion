@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as S from './Search.style';
 import { useNavigate } from 'react-router-dom';
 import { MdArrowBackIos } from 'react-icons/md';
 import NavigationBar from '../../components/navigation-bar/NavigationBar';
 
-const Search = () => {
+const Search = ({ searchService }) => {
    const navigate = useNavigate();
    const backPage = () => {
       navigate(-1);
    };
+
+   useEffect(() => {
+      const fetchData = async () => {
+         const result = await searchService.search();
+         console.log(result.items);
+      };
+      fetchData();
+   }, [searchService]);
 
    return (
       <>
