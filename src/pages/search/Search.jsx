@@ -3,9 +3,11 @@ import * as S from './Search.style';
 import { useNavigate } from 'react-router-dom';
 import { MdArrowBackIos } from 'react-icons/md';
 import NavigationBar from '../../components/navigation-bar/NavigationBar';
+import { useState } from 'react';
 
 const Search = ({ searchService }) => {
    const navigate = useNavigate();
+   const [isBook, setIsBook] = useState([]);
    const backPage = () => {
       navigate(-1);
    };
@@ -13,7 +15,20 @@ const Search = ({ searchService }) => {
    useEffect(() => {
       const fetchData = async () => {
          const result = await searchService.search();
-         console.log(result.items);
+         const list = [];
+
+         result.items.map(item => {
+            const book = {
+               author: item.author,
+               title: item.title,
+               image: item.image,
+               description: item.description,
+            };
+
+            list.push(book);
+            return item;
+         });
+         setIsBook(list);
       };
       fetchData();
    }, [searchService]);
@@ -32,6 +47,21 @@ const Search = ({ searchService }) => {
             <S.SearchBox>
                <input type="text" placeholder="🔍 책 제목, 저자 검색하기" />
             </S.SearchBox>
+            <S.SearchListWrapper>
+               <S.SearchList>
+                  {isBook.map(item => {
+                     return (
+                        <S.SearchItems>
+                           <S.ItemImg img={item.image} />
+                           <S.Item>
+                              <S.ItemTitle>{item.title}</S.ItemTitle>
+                              <S.ItemAuthor>{item.author}</S.ItemAuthor>
+                           </S.Item>
+                        </S.SearchItems>
+                     );
+                  })}
+               </S.SearchList>
+            </S.SearchListWrapper>
          </S.SearchWrapper>
          <NavigationBar />
       </>
