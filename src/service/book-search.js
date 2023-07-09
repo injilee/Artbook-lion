@@ -1,15 +1,13 @@
 import axios from 'axios';
 
 class BookSearch {
-   async search() {
-      const api_url = '/v1/search/book.json?query=여름이 온다';
+   async search(query) {
+      const default_url = `/v1/search/book.json`;
+      const api_url = `/v1/search/book.json?query=${query}&display=20`;
 
       let config = {
          method: 'get',
-         url: api_url,
-         params: {
-            display: 20,
-         },
+         url: query ? api_url : default_url,
          headers: {
             'X-Naver-Client-Id': process.env.REACT_APP_NAVER_CLIENT_ID,
             'X-Naver-Client-Secret': process.env.REACT_APP_NAVER_CLIENT_SECRET,
@@ -23,12 +21,6 @@ class BookSearch {
          console.log(error);
          return null;
       }
-
-      // const result = await axios
-      //    .request(config)
-      //    .then(response => console.log(JSON.stringify(response.data)))
-      //    .catch(error => console.log(error));
-      // return result;
    }
 }
 

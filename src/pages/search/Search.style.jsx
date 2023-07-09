@@ -69,6 +69,16 @@ export const SearchBox = styled.div`
 export const SearchListWrapper = styled.article`
    display: flex;
    width: 100%;
+   overflow-y: auto;
+   &::-webkit-scrollbar {
+      width: 8px;
+   }
+   &::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background: #ccc;
+      background-clip: padding-box;
+      border: 3px solid transparent;
+   }
 `;
 
 export const SearchList = styled.ul`

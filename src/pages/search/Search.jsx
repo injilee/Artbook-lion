@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as S from './Search.style';
 import { useNavigate } from 'react-router-dom';
 import { MdArrowBackIos } from 'react-icons/md';
@@ -8,30 +8,39 @@ import { useState } from 'react';
 const Search = ({ searchService }) => {
    const navigate = useNavigate();
    const [isBook, setIsBook] = useState([]);
+   const [searchInput, setSearchInput] = useState(null);
    const backPage = () => {
       navigate(-1);
    };
 
-   useEffect(() => {
-      const fetchData = async () => {
-         const result = await searchService.search();
-         const list = [];
+   const fetchData = async value => {
+      const result = await searchService.search(value);
+      const list = [];
 
-         result.items.map(item => {
-            const book = {
-               author: item.author,
-               title: item.title,
-               image: item.image,
-               description: item.description,
-            };
+      result.items.map(item => {
+         const book = {
+            author: item.author,
+            title: item.title,
+            image: item.image,
+            description: item.description,
+         };
 
-            list.push(book);
-            return item;
-         });
-         setIsBook(list);
-      };
-      fetchData();
-   }, [searchService]);
+         list.push(book);
+         return item;
+      });
+      setIsBook(list);
+   };
+
+   const getInputValue = e => {
+      setSearchInput(e.target.value);
+   };
+
+   const activeEnter = e => {
+      if (e.key === 'Enter') {
+         fetchData(searchInput);
+      }
+      return;
+   };
 
    return (
       <>
@@ -45,13 +54,18 @@ const Search = ({ searchService }) => {
          </S.Header>
          <S.SearchWrapper>
             <S.SearchBox>
-               <input type="text" placeholder="🔍 책 제목, 저자 검색하기" />
+               <input
+                  type="text"
+                  onChange={getInputValue}
+                  onKeyDown={e => activeEnter(e)}
+                  placeholder="🔍 책 제목, 저자 검색하기"
+               />
             </S.SearchBox>
             <S.SearchListWrapper>
                <S.SearchList>
-                  {isBook.map(item => {
+                  {isBook.map((item, index) => {
                      return (
-                        <S.SearchItems>
+                        <S.SearchItems key={index}>
                            <S.ItemImg img={item.image} />
                            <S.Item>
                               <S.ItemTitle>{item.title}</S.ItemTitle>
