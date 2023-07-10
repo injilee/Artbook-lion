@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import HomeIcon1 from '../../../assets/home-icon1.png';
 import HomeIcon2 from '../../../assets/home-icon2.png';
 import HomeIcon3 from '../../../assets/home-icon3.png';
@@ -91,12 +92,36 @@ const AnotherMenu = () => {
    const [position, setposition] = useState('');
    const [isScroll, setIsScroll] = useState('');
 
+   const navigate = useNavigate();
    const handleScrollMove = e => {
       const x = position + startX - e.clientX;
       if (isScroll) {
          containerRef.current.scrollLeft = `${x}`;
       }
       return;
+   };
+
+   const moveToPage = page => {
+      switch (page) {
+         case 'notice':
+            navigate('/notice');
+            break;
+
+         case 'post':
+            navigate('/post');
+            break;
+
+         case 'community':
+            navigate('/community');
+            break;
+
+         case 'search':
+            navigate('/search');
+            break;
+
+         default:
+            break;
+      }
    };
 
    const handleMouseEvent = (e, scroll) => {
@@ -130,25 +155,25 @@ const AnotherMenu = () => {
             onMouseLeave={e => handleMouseEvent(e, 'leave')}
             onMouseMove={handleScrollMove}
          >
-            <AnotherList>
+            <AnotherList onClick={() => moveToPage('notice')}>
                <AnotherBtn>
                   <img src={HomeIcon1} alt="메뉴 아이콘" />
                   <span>그림책 소식</span>
                </AnotherBtn>
             </AnotherList>
-            <AnotherList>
+            <AnotherList onClick={() => moveToPage('post')}>
                <AnotherBtn>
                   <img src={HomeIcon2} alt="메뉴 아이콘" />
                   <span>독서노트</span>
                </AnotherBtn>
             </AnotherList>
-            <AnotherList>
+            <AnotherList onClick={() => moveToPage('community')}>
                <AnotherBtn>
                   <img src={HomeIcon3} alt="메뉴 아이콘" />
                   <span>커뮤니티</span>
                </AnotherBtn>
             </AnotherList>
-            <AnotherList>
+            <AnotherList onClick={() => moveToPage('search')}>
                <AnotherBtn>
                   <img src={HomeIcon4} alt="메뉴 아이콘" />
                   <span>그림책 검색</span>
