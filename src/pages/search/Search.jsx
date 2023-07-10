@@ -4,11 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import { MdArrowBackIos } from 'react-icons/md';
 import NavigationBar from '../../components/navigation-bar/NavigationBar';
 import { useState } from 'react';
+import { useRef } from 'react';
 
 const Search = ({ searchService }) => {
    const navigate = useNavigate();
+   const queryRef = useRef();
    const [isBook, setIsBook] = useState([]);
-   const [searchInput, setSearchInput] = useState(null);
    const backPage = () => {
       navigate(-1);
    };
@@ -31,13 +32,10 @@ const Search = ({ searchService }) => {
       setIsBook(list);
    };
 
-   const getInputValue = e => {
-      setSearchInput(e.target.value);
-   };
-
    const activeEnter = e => {
       if (e.key === 'Enter') {
-         fetchData(searchInput);
+         const query = queryRef.current.value;
+         fetchData(query);
       }
       return;
    };
@@ -56,7 +54,7 @@ const Search = ({ searchService }) => {
             <S.SearchBox>
                <input
                   type="text"
-                  onChange={getInputValue}
+                  ref={queryRef}
                   onKeyDown={e => activeEnter(e)}
                   placeholder="🔍 책 제목, 저자 검색하기"
                />
