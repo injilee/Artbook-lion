@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import bannerArrow from '../../assets/Arrow-Right2.png';
 
-/* header */
+// header
 export const Header = styled.div`
    max-width: 26.25rem;
    position: fixed;
@@ -13,6 +13,7 @@ export const Header = styled.div`
    height: 3.4375rem;
    border-bottom: 1px solid ${props => props.theme.palette.lightGray};
    background-color: ${props => props.theme.palette.white};
+   z-index: 10;
 
    @media screen and (max-width: 419px) {
       width: 100vw;
@@ -34,7 +35,7 @@ export const HeaderTitle = styled.h1`
    font-weight: 500;
 `;
 
-/* home */
+// home
 export const Wrapper = styled.section`
    max-width: 26.25rem;
    display: flex;
@@ -48,7 +49,7 @@ export const Wrapper = styled.section`
    }
 `;
 
-/* notice */
+// notice
 export const NoticeWrapper = styled.article`
    display: flex;
    flex-direction: column;
@@ -69,19 +70,30 @@ export const NoticeWrapper = styled.article`
 `;
 
 export const NoticeContent = styled.div`
-   border-radius: 1.25rem;
+   height: 3rem;
+   border-radius: 0.625rem;
    background-color: ${props => props.theme.palette.lightGray};
-   padding: 1.0625rem 0.9375rem;
-`;
+   overflow: hidden;
+   padding: 0 0.875rem;
 
-export const NoticeList = styled.li`
-   & > p {
-      font-size: 0.9rem;
-      font-weight: 400;
+   & > ul {
+      display: flex;
+      flex-direction: column;
+      height: max-content;
+      overflow: hidden;
+      transform: translateY(0px);
+      transition-duration: 0ms;
    }
 `;
 
-/* banner */
+export const NoticeList = styled.li`
+   font-size: 1rem;
+   font-weight: 500;
+   line-height: 3rem;
+   cursor: pointer;
+`;
+
+// banner
 export const Banner = styled.article`
    width: 100%;
    height: 5.25rem;
@@ -114,7 +126,7 @@ export const BannerBtn = styled.button`
 
    & > span {
       display: block;
-      font-size: 0.7rem;
+      font-size: 0.8rem;
       font-weight: 600;
       color: ${props => props.theme.palette.pastelPurple};
       padding: 0.75rem 1rem;
