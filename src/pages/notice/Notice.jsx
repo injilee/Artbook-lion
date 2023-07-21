@@ -35,6 +35,9 @@ const Notice = () => {
          <S.NoticeWrapper>
             <S.NoticeContent>
                {NoticeInfo.map((value, index) => {
+                  // 현재 항목이 펼쳐졌는지 여부 확인
+                  const isItemOpen = isCollapse === index;
+
                   return (
                      <S.NoticeList key={value.id}>
                         <S.NoticeTitle onClick={() => handleShowItem(index)} key={index}>
@@ -48,13 +51,11 @@ const Notice = () => {
                               <GrFormClose />
                            </S.SlideButton>
                         </S.NoticeTitle>
-                        <S.ContentWrapper>
-                           {isCollapse === index ? (
-                              <S.Content>
-                                 {value.imageUrl ? <img src={value.imageUrl} alt={value.imageAlt} /> : ''}
-                                 <p>{value.content}</p>
-                              </S.Content>
-                           ) : null}
+                        <S.ContentWrapper className={isItemOpen ? 'open' : ''}>
+                           <S.Content>
+                              {value.imageUrl ? <img src={value.imageUrl} alt={value.imageAlt} /> : ''}
+                              <p>{value.content}</p>
+                           </S.Content>
                         </S.ContentWrapper>
                      </S.NoticeList>
                   );

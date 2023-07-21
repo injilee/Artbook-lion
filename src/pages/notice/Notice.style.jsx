@@ -42,8 +42,13 @@ export const NoticeWrapper = styled.section`
    display: flex;
    flex-direction: column;
    align-items: center;
+   overflow-x: hidden;
+   overflow-y: scroll;
    background-color: ${props => props.theme.palette.white};
    padding: 3.375rem 1.875rem;
+   &::-webkit-scrollbar {
+      display: none;
+   }
 
    @media screen and (max-width: 419px) {
       width: 100%;
@@ -96,8 +101,16 @@ export const SlideButton = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
-   height: 100%;
+   max-height: 0;
+   overflow: hidden;
    border-bottom: 1px solid ${props => props.theme.palette.gray};
+   visibility: hidden;
+   transition: max-height 0.35s ease, visibility 0.35s ease;
+
+   &.open {
+      max-height: 1000px;
+      visibility: visible;
+   }
 `;
 
 export const Content = styled.div`
