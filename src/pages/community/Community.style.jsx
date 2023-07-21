@@ -39,12 +39,13 @@ export const CommunityWrapper = styled.section`
    max-width: 26.25rem;
    display: flex;
    flex-direction: column;
-   align-items: center;
    background-color: ${props => props.theme.palette.white};
-   padding: 4.375rem 1.875rem;
+`;
 
+export const Community = styled.div`
+   padding: 4.375rem 1.875rem;
    @media screen and (max-width: 419px) {
-      padding: 4.375rem 1rem;
+      padding: 0 1rem;
    }
 `;
 

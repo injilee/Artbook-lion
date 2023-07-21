@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-/* header */
+// header
 export const Header = styled.div`
    max-width: 26.25rem;
    position: fixed;
@@ -10,8 +10,16 @@ export const Header = styled.div`
    align-items: center;
    width: 100%;
    height: 3.4375rem;
-   border-bottom: 1px solid ${props => props.theme.palette.lightGray};
+   border-bottom: 2px solid ${props => props.theme.palette.lightGray};
    background-color: ${props => props.theme.palette.white};
+   z-index: 10;
+
+   & > button {
+      position: absolute;
+      right: 0.875rem;
+      font-weight: 500;
+      color: ${props => props.theme.palette.lionRed};
+   }
 
    @media screen and (max-width: 419px) {
       width: 100vw;
@@ -33,12 +41,15 @@ export const HeaderTitle = styled.h1`
    font-weight: 500;
 `;
 
-/* profile */
+// profile
 export const ProfileWrapper = styled.section`
    max-width: 26.25rem;
    display: flex;
    flex-direction: column;
    background-color: ${props => props.theme.palette.white};
+`;
+
+export const ProfileContent = styled.div`
    padding: 4.375rem 1.875rem;
 
    @media screen and (max-width: 419px) {
