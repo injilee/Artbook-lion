@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './Search.style';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MdArrowBackIos } from 'react-icons/md';
 import NavigationBar from '../../components/navigation-bar/NavigationBar';
 import { useState } from 'react';
@@ -61,15 +61,23 @@ const Search = ({ searchService }) => {
             </S.SearchBox>
             <S.SearchListWrapper>
                <S.SearchList>
-                  {isBook.map((item, index) => {
+                  {isBook.map((item, id) => {
                      return (
-                        <S.SearchItems key={index}>
-                           <S.ItemImg img={item.image} />
-                           <S.Item>
-                              <S.ItemTitle>{item.title}</S.ItemTitle>
-                              <S.ItemAuthor>{item.author}</S.ItemAuthor>
-                           </S.Item>
-                        </S.SearchItems>
+                        <Link
+                           key={id}
+                           to={{
+                              pathname: `/detail/${id}`,
+                           }}
+                           state={{ book: isBook[id] }}
+                        >
+                           <S.SearchItems>
+                              <S.ItemImg img={item.image} />
+                              <S.Item>
+                                 <S.ItemTitle>{item.title}</S.ItemTitle>
+                                 <S.ItemAuthor>{item.author}</S.ItemAuthor>
+                              </S.Item>
+                           </S.SearchItems>
+                        </Link>
                      );
                   })}
                </S.SearchList>

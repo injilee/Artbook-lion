@@ -14,6 +14,7 @@ import bookData from './home/suggestBook/SuggestBookData';
 import noticeData from '../pages/notice/NoticeInfo';
 import ProfileEdit from './profile/edit/ProfileEdit';
 import styled from 'styled-components';
+import Detail from './search/Detail';
 
 const ResponseScreen = styled.div`
    display: flex;
@@ -34,6 +35,7 @@ const Pages = ({ authService, searchService }) => {
             <Route path="/signin" element={<SignIn authService={authService} />}></Route>
             <Route path="/home" element={<Home bookData={bookData} />}></Route>
             <Route path="/search" element={<Search searchService={searchService} />}></Route>
+            <Route path="/detail/:id" element={<Detail />}></Route>
             <Route path="/notice" element={<Notice noticeData={noticeData} />}></Route>
             <Route path="/community" element={<Community />}></Route>
             <Route path="/profile" element={<Profile authService={authService} />}></Route>
