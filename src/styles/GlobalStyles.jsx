@@ -40,6 +40,9 @@ const GlobalStyles = createGlobalStyle`
     cursor: pointer;
   }
 
+  textarea{
+    font-family:Pretendard, sans-serif;
+  }
 `;
 
 export default GlobalStyles;
