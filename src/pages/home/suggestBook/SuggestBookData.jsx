@@ -2,7 +2,7 @@ import AprilBook from '../../../assets/sample-book1.png';
 
 const monthBook = [
    {
-      id: 4,
+      id: 7,
       title: '<너는 기적이야>',
       athor: '최숙희',
       description: [
