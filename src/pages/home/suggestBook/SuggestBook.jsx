@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './SuggestBook.style';
 
 const SuggestBook = ({ bookData }) => {
-   const getBook = bookData.filter(value => value.id === 4);
+   const getBook = bookData.filter(value => value.id === 7);
 
    return (
       <S.SuggestBookWrapper>
