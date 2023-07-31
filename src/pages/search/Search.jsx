@@ -18,6 +18,7 @@ const Search = ({ searchService }) => {
       const result = await searchService.search(value);
       const list = [];
 
+      console.log(result);
       result.items.map(item => {
          const book = {
             author: item.author,
