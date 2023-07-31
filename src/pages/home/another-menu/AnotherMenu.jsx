@@ -21,7 +21,6 @@ const AnotherWrapper = styled.article`
 
 const AnotherContent = styled.ul`
    display: flex;
-   flex-direction: row;
    overflow-x: scroll;
    scrollbar-width: none;
    user-select: none;
@@ -59,7 +58,6 @@ const AnotherList = styled.li`
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   width: 7.1875rem;
    border-radius: 1.25rem;
    padding: 1.25rem 1.7rem;
    margin-right: 0.9rem;
