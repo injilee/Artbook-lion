@@ -44,9 +44,6 @@ export const CommunityWrapper = styled.section`
 
 export const Community = styled.div`
    padding: 4.375rem 1.875rem;
-   @media screen and (max-width: 419px) {
-      padding: 0 1rem;
-   }
 `;
 
 export const CommuHeader = styled.div`
