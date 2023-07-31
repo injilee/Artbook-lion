@@ -15,22 +15,27 @@ const Search = ({ searchService }) => {
    };
 
    const fetchData = async value => {
-      const result = await searchService.search(value);
-      const list = [];
+      try {
+         const result = await searchService.search(value);
 
-      console.log(result);
-      result.items.map(item => {
-         const book = {
-            author: item.author,
-            title: item.title,
-            image: item.image,
-            description: item.description,
-         };
-
-         list.push(book);
-         return item;
-      });
-      setIsBook(list);
+         if (result && result.items) {
+            const list = result.items.map(item => {
+               const book = {
+                  author: item.author,
+                  title: item.title,
+                  image: item.image,
+                  description: item.description,
+               };
+               return book;
+            });
+            setIsBook(list);
+         } else {
+            setIsBook([]);
+         }
+      } catch (error) {
+         console.log('Error fetching data :', error);
+         setIsBook([]);
+      }
    };
 
    const activeEnter = e => {
