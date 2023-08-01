@@ -3,7 +3,7 @@ import axios from 'axios';
 class BookSearch {
    async search(query) {
       const default_url = `/v1/search/book.json`;
-      const api_url = `/v1/search/book.json?query=여름&display=20`;
+      const api_url = `/v1/search/book.json?query=${query}&display=20`;
 
       let config = {
          method: 'get',
