@@ -2,8 +2,8 @@ import axios from 'axios';
 
 class BookSearch {
    async search(query) {
-      const default_url = `/v1/search/book.json`;
-      const api_url = `/v1/search/book.json?query=${query}&display=20`;
+      const default_url = `/api/v1/search/book.json`;
+      const api_url = `/api/v1/search/book.json?query=${query}&display=20`;
 
       let config = {
          method: 'get',
