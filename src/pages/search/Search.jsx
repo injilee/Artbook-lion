@@ -46,6 +46,11 @@ const Search = ({ searchService }) => {
       return;
    };
 
+   const handleSubmit = () => {
+      const query = queryRef.current.value;
+      fetchData(query);
+   };
+
    return (
       <>
          <S.Header>
@@ -58,12 +63,10 @@ const Search = ({ searchService }) => {
          </S.Header>
          <S.SearchWrapper>
             <S.SearchBox>
-               <input
-                  type="text"
-                  ref={queryRef}
-                  onKeyDown={e => activeEnter(e)}
-                  placeholder="🔍 책 제목, 저자 검색하기"
-               />
+               <input type="text" ref={queryRef} onKeyDown={e => activeEnter(e)} placeholder="책 제목, 저자 입력" />
+               <button type="button" onClick={() => handleSubmit()}>
+                  찾기
+               </button>
             </S.SearchBox>
             <S.SearchListWrapper>
                <S.SearchList>

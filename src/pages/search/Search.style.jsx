@@ -61,8 +61,21 @@ export const SearchBox = styled.div`
       width: 100%;
       padding: 1rem;
       border: none;
-      border-radius: 0.625rem;
+      border-top-left-radius: 0.625rem;
+      border-bottom-left-radius: 0.625rem;
       background-color: ${props => props.theme.palette.inputBox};
+   }
+
+   & > button {
+      width: 3.75rem;
+      height: 100%;
+      font-size: 1rem;
+      font-weight: 500;
+      border: none;
+      border-top-right-radius: 0.625rem;
+      border-bottom-right-radius: 0.625rem;
+      color: ${props => props.theme.palette.white};
+      background-color: ${props => props.theme.palette.lionRed};
    }
 `;
 
