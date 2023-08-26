@@ -5,8 +5,9 @@ import { MdArrowBackIos } from 'react-icons/md';
 import NavigationBar from '../../components/navigation-bar/NavigationBar';
 import { useState } from 'react';
 import { useRef } from 'react';
+import axios from 'axios';
 
-const Search = ({ searchService }) => {
+const Search = () => {
    const navigate = useNavigate();
    const queryRef = useRef();
    const [isBook, setIsBook] = useState([]);
@@ -14,29 +15,21 @@ const Search = ({ searchService }) => {
       navigate(-1);
    };
 
-   const fetchData = async value => {
+   async function fetchData(query) {
       try {
-         const result = await searchService.search(value);
+         const response = await axios.get(`/v1/search/book.json?query=${query}&display=20`, {
+            headers: {
+               Accept: 'application/json', // Accept 헤더 설정
+               'X-Naver-Client-Id': process.env.REACT_APP_NAVER_CLIENT_ID,
+               'X-Naver-Client-Secret': process.env.REACT_APP_NAVER_CLIENT_SECRET,
+            },
+         });
 
-         if (result && result.items) {
-            const list = result.items.map(item => {
-               const book = {
-                  author: item.author,
-                  title: item.title,
-                  image: item.image,
-                  description: item.description,
-               };
-               return book;
-            });
-            setIsBook(list);
-         } else {
-            setIsBook([]);
-         }
+         setIsBook(response.data.items);
       } catch (error) {
-         console.log('Error fetching data :', error);
-         setIsBook([]);
+         console.error(error);
       }
-   };
+   }
 
    const activeEnter = e => {
       if (e.key === 'Enter') {
