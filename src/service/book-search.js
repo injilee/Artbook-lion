@@ -9,6 +9,8 @@ class BookSearch {
          method: 'get',
          url: query ? api_url : default_url,
          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
             'X-Naver-Client-Id': process.env.REACT_APP_NAVER_CLIENT_ID,
             'X-Naver-Client-Secret': process.env.REACT_APP_NAVER_CLIENT_SECRET,
          },
