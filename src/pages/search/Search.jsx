@@ -15,13 +15,19 @@ const Search = () => {
       navigate(-1);
    };
 
+   const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+   const URL = `${PROXY}/v1/search/book.json`;
+
    async function fetchData(query) {
       try {
-         const response = await axios.get(`/v1/search/book.json?query=${query}&display=20`, {
+         const response = await axios.get(URL, {
             headers: {
-               Accept: 'application/json', // Accept 헤더 설정
                'X-Naver-Client-Id': process.env.REACT_APP_NAVER_CLIENT_ID,
                'X-Naver-Client-Secret': process.env.REACT_APP_NAVER_CLIENT_SECRET,
+            },
+            params: {
+               query: query,
+               display: 20,
             },
          });
 
