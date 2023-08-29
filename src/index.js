@@ -6,6 +6,8 @@ import theme from './theme';
 import AuthService from './service/auth-service';
 import { firebaseApp } from './service/firebase';
 import BookSearch from './service/book-search';
+import store from './redux/store';
+import { Provider } from 'react-redux';
 
 const authService = new AuthService(firebaseApp);
 const searchService = new BookSearch();
@@ -13,6 +15,8 @@ const searchService = new BookSearch();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
    <ThemeProvider theme={theme}>
-      <App authService={authService} searchService={searchService} />
+      <Provider store={store}>
+         <App authService={authService} searchService={searchService} />
+      </Provider>
    </ThemeProvider>,
 );
