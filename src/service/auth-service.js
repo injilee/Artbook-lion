@@ -4,11 +4,19 @@ import {
    signInWithEmailAndPassword,
    updateProfile,
    signOut,
+   onAuthStateChanged,
 } from 'firebase/auth';
 
 class AuthService {
    constructor(app) {
       this.firebaseAuth = getAuth(app);
+   }
+
+   checkLogin(onUserChanged) {
+      const auth = this.firebaseAuth;
+      onAuthStateChanged(auth, user => {
+         onUserChanged(user);
+      });
    }
 
    logout() {
@@ -29,7 +37,6 @@ class AuthService {
 
    checkedEmailPassword(navigator, email, password) {
       const auth = this.firebaseAuth;
-      console.log(email, password);
       signInWithEmailAndPassword(auth, email, password)
          .then(() => navigator('/home'))
          .catch(error => {
