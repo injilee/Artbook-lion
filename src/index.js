@@ -6,8 +6,8 @@ import theme from './theme';
 import AuthService from './service/auth-service';
 import { firebaseApp } from './service/firebase';
 import BookSearch from './service/book-search';
-import store from './redux/store';
 import { Provider } from 'react-redux';
+import store from './store/store';
 
 const authService = new AuthService(firebaseApp);
 const searchService = new BookSearch();
