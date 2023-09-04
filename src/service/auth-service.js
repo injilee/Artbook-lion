@@ -5,6 +5,8 @@ import {
    updateProfile,
    signOut,
    onAuthStateChanged,
+   setPersistence,
+   inMemoryPersistence,
 } from 'firebase/auth';
 
 class AuthService {
@@ -12,7 +14,7 @@ class AuthService {
       this.firebaseAuth = getAuth(app);
    }
 
-   checkLogin(onUserChanged) {
+   onAuthChanged(onUserChanged) {
       const auth = this.firebaseAuth;
       onAuthStateChanged(auth, user => {
          onUserChanged(user);
@@ -24,7 +26,7 @@ class AuthService {
       alert('정상적으로 로그아웃 되었습니다.');
    }
 
-   emailSignIn(displayName, email, password) {
+   signIn(displayName, email, password) {
       const auth = this.firebaseAuth;
       createUserWithEmailAndPassword(auth, email, password)
          .then(() => {
@@ -35,10 +37,13 @@ class AuthService {
          .catch(error => console.log(error));
    }
 
-   checkedEmailPassword(navigator, email, password) {
+   loginWithEmailAndPass(email, password) {
       const auth = this.firebaseAuth;
-      signInWithEmailAndPassword(auth, email, password)
-         .then(() => navigator('/home'))
+      setPersistence(auth, inMemoryPersistence)
+         .then(async () => {
+            await signInWithEmailAndPassword(auth, email, password);
+            return alert('로그인 되었습니다.');
+         })
          .catch(error => {
             switch (error.code) {
                case 'auth/user-not-found':
