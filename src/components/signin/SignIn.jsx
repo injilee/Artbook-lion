@@ -74,7 +74,7 @@ const SignIn = ({ authService }) => {
    };
 
    const sendUserData = () => {
-      authService.emailSignIn(userName, userEmail, userPassword);
+      authService.signIn(userName, userEmail, userPassword);
       console.log(userEmail, userPassword);
    };
 
