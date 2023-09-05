@@ -5,7 +5,6 @@ import { MdArrowBackIos } from 'react-icons/md';
 import NavigationBar from '../../components/navigation-bar/NavigationBar';
 import { useState } from 'react';
 import { useRef } from 'react';
-import axios from 'axios';
 
 const Search = () => {
    const navigate = useNavigate();
@@ -33,7 +32,7 @@ const Search = () => {
          fetch(`/v1/search/book.json?query=${query}&display=20`, config)
             .then(res => {
                // setIsBook(res.data.items);
-               console.log(res);
+               res.json().then(data => setIsBook(data.items));
             })
             .catch(error => console.log(error));
       } else {
