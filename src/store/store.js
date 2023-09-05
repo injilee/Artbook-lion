@@ -5,14 +5,18 @@ import persistReducer from 'redux-persist/es/persistReducer';
 export const userSlice = createSlice({
    name: 'user',
    initialState: {
-      displayName: '',
-      id: '',
+      name: '',
+      uid: '',
+      account: '',
       token: '',
    },
    reducers: {
       setUser: (state, action) => {
-         state.displayName = action.payload.displayName;
-         state.id = action.payload.id;
+         state.name = action.payload.displayName;
+         state.uid = action.payload.uid;
+
+         const emailParts = action.payload.email.split('@');
+         state.account = '@' + emailParts[0];
          state.token = action.payload.token;
       },
    },
@@ -21,7 +25,7 @@ export const userSlice = createSlice({
 const persistConfig = {
    key: 'root',
    storage,
-   whitelist: ['displayName', 'id', 'token'],
+   whitelist: ['name', 'uid', 'account', 'token'],
 };
 
 const persistedReducer = persistReducer(persistConfig, userSlice.reducer);
