@@ -14,8 +14,8 @@ const Search = () => {
       navigate(-1);
    };
 
-   const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-   const URL = `${PROXY}/v1/search/book.json`;
+   // const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+   // const URL = `${PROXY}/v1/search/book.json`;
 
    async function fetchData(query) {
       let config = {
