@@ -5,18 +5,25 @@ import { MdArrowBackIos } from 'react-icons/md';
 import NavigationBar from '../../components/navigation-bar/NavigationBar';
 import testUserInfo from '../community/TestUserInfo';
 import Aside from '../post/Aside';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import store, { clearUser } from '../../store/store';
+import persistStore from 'redux-persist/es/persistStore';
 
 const Profile = ({ authService }) => {
    const navigate = useNavigate();
+   const dispatch = useDispatch();
    const name = useSelector(state => state.user.name);
    const account = useSelector(state => state.user.account);
+
    const backPage = () => {
       navigate(-1);
    };
 
-   const onLogout = () => {
-      authService.logout();
+   const onLogout = async () => {
+      await authService.logout();
+      dispatch(clearUser());
+      persistStore(store).purge();
+      alert('정상적으로 로그아웃 되었습니다.');
       navigate('/login');
    };
 

@@ -1,15 +1,17 @@
-import storage from 'redux-persist/lib/storage';
+import { PURGE } from 'redux-persist';
 import { configureStore, createSlice } from '@reduxjs/toolkit';
+import storage from 'redux-persist/lib/storage';
 import persistReducer from 'redux-persist/es/persistReducer';
 
+const initialState = {
+   name: '',
+   uid: '',
+   account: '',
+   token: '',
+};
 export const userSlice = createSlice({
    name: 'user',
-   initialState: {
-      name: '',
-      uid: '',
-      account: '',
-      token: '',
-   },
+   initialState,
    reducers: {
       setUser: (state, action) => {
          state.name = action.payload.displayName;
@@ -19,6 +21,14 @@ export const userSlice = createSlice({
          state.account = '@' + emailParts[0];
          state.token = action.payload.token;
       },
+      clearUser: state => {
+         state.user = null;
+      },
+   },
+   extraReducers: builder => {
+      builder.addCase(PURGE, () => {
+         return initialState;
+      });
    },
 });
 
@@ -30,7 +40,7 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, userSlice.reducer);
 
-export const { setUser } = userSlice.actions;
+export const { setUser, clearUser } = userSlice.actions;
 
 export default configureStore({
    reducer: {
