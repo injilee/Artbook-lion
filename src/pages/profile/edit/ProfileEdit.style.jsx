@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-/* header */
+// header
 export const Header = styled.div`
    max-width: 26.25rem;
    position: fixed;
@@ -10,7 +10,9 @@ export const Header = styled.div`
    align-items: center;
    width: 100%;
    height: 3.4375rem;
+   border-bottom: 2px solid ${props => props.theme.palette.lightGray};
    background-color: ${props => props.theme.palette.white};
+   z-index: 10;
 
    @media screen and (max-width: 419px) {
       width: 100vw;
@@ -32,7 +34,7 @@ export const HeaderTitle = styled.h1`
    font-weight: 500;
 `;
 
-/* profile */
+// profile
 export const ProfileEditWrapper = styled.section`
    max-width: 26.25rem;
    display: flex;
@@ -50,12 +52,6 @@ export const Profile = styled.div`
    flex-direction: column;
    justify-content: center;
    align-items: center;
-
-   & > span {
-      font-size: 0.8rem;
-      color: ${props => props.theme.palette.gray};
-      margin-bottom: 3rem;
-   }
 
    & > button {
       font-size: 0.8rem;
@@ -103,19 +99,17 @@ export const UserIdEdit = styled.div`
    display: flex;
    flex-direction: column;
    justify-content: center;
+   align-items: center;
    margin-bottom: 1rem;
 
-   & > label {
-      font-size: 0.9rem;
-      color: ${props => props.theme.palette.gray};
+   & > p {
       margin-bottom: 0.5rem;
    }
 
-   & > input {
+   & > span {
       text-align: center;
-      outline: none;
-      border: none;
-      border-bottom: 1px solid ${props => props.theme.palette.buttonGray};
+      font-size: 0.9rem;
+      color: ${props => props.theme.palette.gray};
       background-color: transparent;
       padding: 0.5rem;
    }

@@ -5,9 +5,12 @@ import { MdArrowBackIos } from 'react-icons/md';
 import { RiImageEditLine } from 'react-icons/ri';
 import NavigationBar from '../../../components/navigation-bar/NavigationBar';
 import defaultProfile from '../../../assets/lion-img.png';
+import { useSelector } from 'react-redux';
 
 const ProfileEdit = () => {
    const navigate = useNavigate();
+   const account = useSelector(state => state.user.account);
+
    const backPage = () => {
       navigate(-1);
    };
@@ -36,10 +39,9 @@ const ProfileEdit = () => {
                   </button>
                </S.ProfileImg>
                <S.UserIdEdit>
-                  <label>사용자 닉네임</label>
-                  <input type="text" placeholder="2 ~ 8자 이내" />
+                  <p htmlFor="name">사용자 계정</p>
+                  <span>{account}</span>
                </S.UserIdEdit>
-               <span>@inji</span>
                <button onClick={successEdit}>수정하기</button>
             </S.Profile>
          </S.ProfileEditWrapper>
