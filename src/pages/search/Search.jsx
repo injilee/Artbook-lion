@@ -19,23 +19,25 @@ const Search = () => {
    const URL = `${PROXY}/v1/search/book.json`;
 
    async function fetchData(query) {
-      try {
-         const response = await axios.get(URL, {
-            headers: {
-               'Content-Type': 'application/json',
-               Accept: 'application/json',
-               'X-Naver-Client-Id': process.env.REACT_APP_NAVER_CLIENT_ID,
-               'X-Naver-Client-Secret': process.env.REACT_APP_NAVER_CLIENT_SECRET,
-            },
-            params: {
-               query: query,
-               display: 20,
-            },
-         });
+      let config = {
+         method: 'get',
+         headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'X-Naver-Client-Id': process.env.REACT_APP_NAVER_CLIENT_ID,
+            'X-Naver-Client-Secret': process.env.REACT_APP_NAVER_CLIENT_SECRET,
+         },
+      };
 
-         setIsBook(response.data.items);
-      } catch (error) {
-         console.error(error);
+      if (query) {
+         fetch(`/v1/search/book.json?query=${query}&display=20`, config)
+            .then(res => {
+               // setIsBook(res.data.items);
+               console.log(res);
+            })
+            .catch(error => console.log(error));
+      } else {
+         return;
       }
    }
 
