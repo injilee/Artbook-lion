@@ -63,7 +63,7 @@ export const ProfileHeader = styled.div`
    justify-content: center;
    align-items: center;
    border-bottom: 1px solid ${props => props.theme.palette.buttonGray};
-   padding-bottom: 2.625rem;
+   padding: 2rem 0 2.625rem;
    margin-bottom: 1em;
 `;
 
@@ -100,6 +100,10 @@ export const Profile = styled.div`
       background-color: ${props => props.theme.palette.buttonGray};
       border-radius: 0.3125rem;
       padding: 0.4375rem 1rem;
+
+      &:hover {
+         background-color: ${props => props.theme.palette.darkGreen};
+      }
    }
 `;
 

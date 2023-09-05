@@ -5,9 +5,12 @@ import { MdArrowBackIos } from 'react-icons/md';
 import NavigationBar from '../../components/navigation-bar/NavigationBar';
 import testUserInfo from '../community/TestUserInfo';
 import Aside from '../post/Aside';
+import { useSelector } from 'react-redux';
 
 const Profile = ({ authService }) => {
    const navigate = useNavigate();
+   const name = useSelector(state => state.user.name);
+   const account = useSelector(state => state.user.account);
    const backPage = () => {
       navigate(-1);
    };
@@ -33,8 +36,8 @@ const Profile = ({ authService }) => {
                <S.ProfileHeader>
                   <S.Profile>
                      <img src={testUserInfo[0].userProfile} alt="프로필" />
-                     <strong>{testUserInfo[0].name}</strong>
-                     <span>@inji</span>
+                     <strong>{name}</strong>
+                     <span>{account}</span>
                      <button onClick={() => navigate('/profile/:id/edit')}>프로필 수정</button>
                   </S.Profile>
                </S.ProfileHeader>
@@ -48,7 +51,7 @@ const Profile = ({ authService }) => {
                      <S.PostCommentUser>
                         <S.PostCommentDetail>
                            <img src={testUserInfo[0].userProfile} alt="유저 프로필" />
-                           <span>{testUserInfo[0].name}</span>
+                           <span>{name}</span>
                         </S.PostCommentDetail>
                         <p>{testUserInfo[0].grade}</p>
                      </S.PostCommentUser>
