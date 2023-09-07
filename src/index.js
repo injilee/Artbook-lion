@@ -5,12 +5,14 @@ import { ThemeProvider } from 'styled-components';
 import theme from './theme';
 import AuthService from './service/auth-service';
 import { firebaseApp } from './service/firebase';
+import BookSearch from './service/book-search';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import persistStore from 'redux-persist/es/persistStore';
 import { PersistGate } from 'redux-persist/integration/react';
 
 const authService = new AuthService(firebaseApp);
+const searchService = new BookSearch();
 export let persistor = persistStore(store);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -18,7 +20,7 @@ root.render(
    <ThemeProvider theme={theme}>
       <Provider store={store}>
          <PersistGate persistor={persistor}>
-            <App authService={authService} />
+            <App authService={authService} searchService={searchService} />
          </PersistGate>
       </Provider>
    </ThemeProvider>,

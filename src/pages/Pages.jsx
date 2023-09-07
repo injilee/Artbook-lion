@@ -25,7 +25,7 @@ const ResponseScreen = styled.div`
    }
 `;
 
-const Pages = ({ authService }) => {
+const Pages = ({ authService, searchService }) => {
    return (
       <ResponseScreen>
          <Routes>
@@ -34,7 +34,7 @@ const Pages = ({ authService }) => {
             <Route path="/login" element={<Login authService={authService} />}></Route>
             <Route path="/signin" element={<SignIn authService={authService} />}></Route>
             <Route path="/home" element={<Home bookData={bookData} />}></Route>
-            <Route path="/search" element={<Search />}></Route>
+            <Route path="/search" element={<Search searchService={searchService} />}></Route>
             <Route path="/detail/:id" element={<Detail />}></Route>
             <Route path="/notice" element={<Notice noticeData={noticeData} />}></Route>
             <Route path="/community" element={<Community />}></Route>
