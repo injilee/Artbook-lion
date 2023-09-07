@@ -5,6 +5,7 @@ import { MdArrowBackIos } from 'react-icons/md';
 import NavigationBar from '../../components/navigation-bar/NavigationBar';
 import { useState } from 'react';
 import { useRef } from 'react';
+import axios from 'axios';
 
 const Search = () => {
    const navigate = useNavigate();
@@ -14,29 +15,30 @@ const Search = () => {
       navigate(-1);
    };
 
-   // const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-   // const URL = `${PROXY}/v1/search/book.json`;
+   const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+   const URL = `${PROXY}/v1/search/book.json`;
+
+   const instance = axios.create({
+      headers: {
+         'Content-Type': 'application/json',
+         Accept: 'application/json',
+         'X-Naver-Client-Id': process.env.REACT_APP_NAVER_CLIENT_ID,
+         'X-Naver-Client-Secret': process.env.REACT_APP_NAVER_CLIENT_SECRET,
+      },
+   });
 
    async function fetchData(query) {
-      let config = {
-         method: 'get',
-         headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            'X-Naver-Client-Id': process.env.REACT_APP_NAVER_CLIENT_ID,
-            'X-Naver-Client-Secret': process.env.REACT_APP_NAVER_CLIENT_SECRET,
-         },
-      };
-
-      if (query) {
-         fetch(`/v1/search/book.json?query=${query}&display=20`, config)
-            .then(res => {
-               // setIsBook(res.data.items);
-               res.json().then(data => setIsBook(data.items));
-            })
-            .catch(error => console.log(error));
-      } else {
-         return;
+      try {
+         const response = await instance.get(URL, {
+            params: {
+               query: query,
+               display: 20,
+            },
+         });
+         console.log(response.data.items);
+         setIsBook(response.data.items);
+      } catch (error) {
+         console.error(error);
       }
    }
 
