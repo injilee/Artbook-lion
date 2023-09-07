@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as S from './Login.style';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setUser } from '../../store/store';
 
 const Login = ({ authService }) => {
@@ -9,6 +9,8 @@ const Login = ({ authService }) => {
    const passwordRef = useRef();
    const navigator = useNavigate();
    const dispatch = useDispatch();
+
+   // state redux로 관리
    const [userEmail, setUserEmail] = useState('');
    const [userPassword, setUserPassword] = useState('');
    const [emailMessage, setEmailMessage] = useState('');
@@ -19,20 +21,24 @@ const Login = ({ authService }) => {
    const emailRegex = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
    const checked = isValidateEmail && isValidatePassword;
 
-   const userData = useSelector(state => state.user);
-
-   // const goToHome = () => {
-   //    navigator('/home');
-   // };
-
-   console.log(userData);
    useEffect(() => {
-      authService.checkLogin(user => {
-         dispatch(setUser({ displayName: user.displayName, id: user.uid, token: user.accessToken }));
-         // user ? dispatch(login(user)) : dispatch(logout());
-         // user && goToHome();
+      const goToHome = () => {
+         navigator('/home');
+      };
+
+      authService.onAuthChanged(user => {
+         if (user !== null) {
+            const profile = {
+               displayName: user.displayName,
+               uid: user.uid,
+               email: user.email,
+               token: user.accessToken,
+            };
+            dispatch(setUser(profile));
+            goToHome();
+         }
       });
-   }, [authService, dispatch]);
+   }, [authService, dispatch, navigator]);
 
    const checkEmail = () => {
       const emailValue = emailRef.current.value;
@@ -63,7 +69,7 @@ const Login = ({ authService }) => {
    const loginEmailAndPassword = event => {
       event.preventDefault();
       if (checked) {
-         authService.checkedEmailPassword(navigator, userEmail, userPassword);
+         authService.loginWithEmailAndPass(userEmail, userPassword);
       }
       return;
    };

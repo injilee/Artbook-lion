@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 const Wrapper = styled.div`
    max-width: 26.25rem;
    position: fixed;
-   bottom: 0;
+   bottom: 0.75rem;
    width: 100%;
    border-top: 2px solid ${props => props.theme.palette.lightGray};
    background-color: ${props => props.theme.palette.white};
