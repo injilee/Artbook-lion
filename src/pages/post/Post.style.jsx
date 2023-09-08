@@ -88,6 +88,10 @@ export const Search = styled.div`
    }
 `;
 
+export const PostForm = styled.form`
+   width: 100%;
+`;
+
 export const PostItem = styled.div`
    display: flex;
    align-items: center;
