@@ -9,6 +9,8 @@ const initialState = {
    account: '',
    token: '',
 };
+
+// 로그인한 사용자 정보 저장하기
 export const userSlice = createSlice({
    name: 'user',
    initialState,
@@ -40,11 +42,36 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, userSlice.reducer);
 
+// 도서 검색어 쿼리 저장하기
+export const searchBookSlice = createSlice({
+   name: 'searchResults',
+   initialState: {
+      results: [],
+   },
+   reducers: {
+      setResults: (state, action) => {
+         state.results = [...action.payload];
+      },
+      resetResults: state => {
+         state.results = [];
+      },
+   },
+});
+
+const searchResultsPersistConfig = {
+   key: 'searchResults',
+   storage,
+};
+
+const persistedSearchResultsyReducer = persistReducer(searchResultsPersistConfig, searchBookSlice.reducer);
+
 export const { setUser, clearUser } = userSlice.actions;
+export const { setResults, resetResults } = searchBookSlice.actions;
 
 export default configureStore({
    reducer: {
       user: persistedReducer,
+      searchResults: persistedSearchResultsyReducer,
    },
    middleware: defaultMiddleware =>
       defaultMiddleware({

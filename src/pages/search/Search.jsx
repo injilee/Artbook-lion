@@ -1,22 +1,26 @@
+import axios from 'axios';
 import React from 'react';
 import * as S from './Search.style';
+import NavigationBar from '../../components/navigation-bar/NavigationBar';
 import { Link, useNavigate } from 'react-router-dom';
 import { MdArrowBackIos } from 'react-icons/md';
-import NavigationBar from '../../components/navigation-bar/NavigationBar';
-import { useState } from 'react';
 import { useRef } from 'react';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetResults, setResults } from '../../store/store';
 
 const Search = () => {
-   const navigate = useNavigate();
    const queryRef = useRef();
-   const [isBook, setIsBook] = useState([]);
-   const backPage = () => {
-      navigate(-1);
-   };
+   const dispatch = useDispatch();
+   const navigate = useNavigate();
+   const results = useSelector(state => state.searchResults.results);
 
    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
    const URL = `${PROXY}/v1/search/book.json`;
+
+   const backPage = () => {
+      navigate(-1);
+      dispatch(resetResults());
+   };
 
    const instance = axios.create({
       headers: {
@@ -35,15 +39,15 @@ const Search = () => {
                display: 20,
             },
          });
-         console.log(response.data.items);
-         setIsBook(response.data.items);
+         dispatch(setResults(response.data.items));
       } catch (error) {
          console.error(error);
       }
    }
 
-   const activeEnter = e => {
+   const handleKeyPress = e => {
       if (e.key === 'Enter') {
+         e.preventDefault();
          const query = queryRef.current.value;
          fetchData(query);
       }
@@ -66,22 +70,28 @@ const Search = () => {
             <S.HeaderTitle>도서 검색</S.HeaderTitle>
          </S.Header>
          <S.SearchWrapper>
-            <S.SearchBox>
-               <input type="text" ref={queryRef} onKeyDown={e => activeEnter(e)} placeholder="책 제목, 저자 입력" />
+            <S.SearchBox id="seachBooks">
+               <input
+                  name="seachBooks"
+                  type="text"
+                  ref={queryRef}
+                  onKeyDown={e => handleKeyPress(e)}
+                  placeholder="책 제목, 저자 입력"
+               />
                <button type="button" onClick={() => handleSubmit()}>
                   찾기
                </button>
             </S.SearchBox>
             <S.SearchListWrapper>
                <S.SearchList>
-                  {isBook.map((item, id) => {
+                  {results.map((item, id) => {
                      return (
                         <Link
                            key={id}
                            to={{
                               pathname: `/detail/${id}`,
                            }}
-                           state={{ book: isBook[id] }}
+                           state={{ book: results[id] }}
                         >
                            <S.SearchItems>
                               <S.ItemImg img={item.image} />
