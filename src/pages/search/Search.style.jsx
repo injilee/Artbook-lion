@@ -51,7 +51,7 @@ export const SearchWrapper = styled.section`
    }
 `;
 
-export const SearchBox = styled.div`
+export const SearchBox = styled.form`
    width: 100%;
    display: flex;
    justify-content: center;
@@ -92,6 +92,10 @@ export const SearchListWrapper = styled.article`
       background-clip: padding-box;
       border: 3px solid transparent;
    }
+
+   a {
+      text-decoration: none;
+   }
 `;
 
 export const SearchList = styled.ul`
@@ -106,6 +110,10 @@ export const SearchItems = styled.li`
    align-items: center;
    padding: 1.37rem 0;
    border-bottom: 1px solid #bec2c2;
+
+   &:hover {
+      background-color: ${props => props.theme.palette.lightGray};
+   }
 `;
 
 export const ItemImg = styled.img.attrs(props => ({
