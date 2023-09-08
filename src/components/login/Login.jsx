@@ -10,7 +10,6 @@ const Login = ({ authService }) => {
    const navigator = useNavigate();
    const dispatch = useDispatch();
 
-   // state redux로 관리
    const [userEmail, setUserEmail] = useState('');
    const [userPassword, setUserPassword] = useState('');
    const [emailMessage, setEmailMessage] = useState('');
@@ -22,10 +21,6 @@ const Login = ({ authService }) => {
    const checked = isValidateEmail && isValidatePassword;
 
    useEffect(() => {
-      const goToHome = () => {
-         navigator('/home');
-      };
-
       authService.onAuthChanged(user => {
          if (user !== null) {
             const profile = {
@@ -35,10 +30,13 @@ const Login = ({ authService }) => {
                token: user.accessToken,
             };
             dispatch(setUser(profile));
-            goToHome();
          }
       });
-   }, [authService, dispatch, navigator]);
+   }, [authService, dispatch]);
+
+   const goToHome = () => {
+      navigator('/home');
+   };
 
    const checkEmail = () => {
       const emailValue = emailRef.current.value;
@@ -70,6 +68,8 @@ const Login = ({ authService }) => {
       event.preventDefault();
       if (checked) {
          authService.loginWithEmailAndPass(userEmail, userPassword);
+         alert('로그인 되었습니다.');
+         goToHome();
       }
       return;
    };
@@ -82,10 +82,16 @@ const Login = ({ authService }) => {
                회원가입 시 그림책 정보와 전시 소식을 <br /> 받아볼 수 있어요!
             </p>
          </S.LoginText>
-         <S.LoginInputBox>
-            <S.LoginInput ref={emailRef} onChange={checkEmail} placeholder="Email Address" type="email" />
+         <S.LoginInputBox id="login">
+            <S.LoginInput name="login" ref={emailRef} onChange={checkEmail} placeholder="Email Address" type="email" />
             <p>{emailMessage}</p>
-            <S.LoginInput ref={passwordRef} onChange={checkPassword} placeholder="Password" type="password" />
+            <S.LoginInput
+               name="login"
+               ref={passwordRef}
+               onChange={checkPassword}
+               placeholder="Password"
+               type="password"
+            />
             <p>{passwordMessage}</p>
          </S.LoginInputBox>
          <S.LoginBtn checked={checked === false ? false : true}>

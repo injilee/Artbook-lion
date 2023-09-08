@@ -25,7 +25,7 @@ export const LoginText = styled.div`
    }
 `;
 
-export const LoginInputBox = styled.div`
+export const LoginInputBox = styled.form`
    display: flex;
    flex-direction: column;
    margin-bottom: 1.5rem;
