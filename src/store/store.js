@@ -7,7 +7,6 @@ const initialState = {
    name: '',
    uid: '',
    account: '',
-   token: '',
 };
 
 // 로그인한 사용자 정보 저장하기
@@ -21,7 +20,6 @@ export const userSlice = createSlice({
 
          const emailParts = action.payload.email.split('@');
          state.account = '@' + emailParts[0];
-         state.token = action.payload.token;
       },
       clearUser: state => {
          state.user = null;
@@ -37,7 +35,7 @@ export const userSlice = createSlice({
 const persistConfig = {
    key: 'root',
    storage,
-   whitelist: ['name', 'uid', 'account', 'token'],
+   whitelist: ['name', 'uid', 'account'],
 };
 
 const persistedReducer = persistReducer(persistConfig, userSlice.reducer);

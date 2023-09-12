@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as S from './Login.style';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../store/store';
 
 const Login = ({ authService }) => {
@@ -16,6 +16,7 @@ const Login = ({ authService }) => {
    const [passwordMessage, setPasswordMessage] = useState('');
    const [isValidateEmail, setIsValidateEmail] = useState(false);
    const [isValidatePassword, setIsValidatePassword] = useState(false);
+   const uid = useSelector(state => state.user.uid);
 
    const emailRegex = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
    const checked = isValidateEmail && isValidatePassword;
@@ -27,16 +28,14 @@ const Login = ({ authService }) => {
                displayName: user.displayName,
                uid: user.uid,
                email: user.email,
-               token: user.accessToken,
             };
             dispatch(setUser(profile));
+            navigator('/home');
+         } else if (uid) {
+            navigator('/home');
          }
       });
-   }, [authService, dispatch]);
-
-   const goToHome = () => {
-      navigator('/home');
-   };
+   }, [authService, dispatch, navigator, uid]);
 
    const checkEmail = () => {
       const emailValue = emailRef.current.value;
@@ -68,8 +67,6 @@ const Login = ({ authService }) => {
       event.preventDefault();
       if (checked) {
          authService.loginWithEmailAndPass(userEmail, userPassword);
-         alert('로그인 되었습니다.');
-         goToHome();
       }
       return;
    };

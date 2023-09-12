@@ -41,6 +41,7 @@ class AuthService {
       setPersistence(auth, inMemoryPersistence)
          .then(async () => {
             await signInWithEmailAndPassword(auth, email, password);
+            alert('로그인 되었습니다.');
             return;
          })
          .catch(error => {
