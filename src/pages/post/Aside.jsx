@@ -11,7 +11,7 @@ export const PostBtnWrapper = styled.div`
 export const PostBtn = styled.aside`
    position: absolute;
    right: 30px;
-   bottom: 70px;
+   bottom: 90px;
    cursor: pointer;
    & > img {
       width: 2.8125rem;
