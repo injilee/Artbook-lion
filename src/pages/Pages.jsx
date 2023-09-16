@@ -25,7 +25,7 @@ const ResponseScreen = styled.div`
    }
 `;
 
-const Pages = ({ authService }) => {
+const Pages = ({ authService, storageService }) => {
    return (
       <ResponseScreen>
          <Routes>
@@ -39,7 +39,10 @@ const Pages = ({ authService }) => {
             <Route path="/notice" element={<Notice noticeData={noticeData} />}></Route>
             <Route path="/community" element={<Community />}></Route>
             <Route path="/profile" element={<Profile authService={authService} />}></Route>
-            <Route path="/profile/:id/edit" element={<ProfileEdit authService={authService} />}></Route>
+            <Route
+               path="/profile/:id/edit"
+               element={<ProfileEdit authService={authService} storageService={storageService} />}
+            ></Route>
             <Route path="/post" element={<Post />}></Route>
          </Routes>
       </ResponseScreen>

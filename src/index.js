@@ -9,8 +9,10 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 import persistStore from 'redux-persist/es/persistStore';
 import { PersistGate } from 'redux-persist/integration/react';
+import StorageService from './service/storage';
 
 const authService = new AuthService(firebaseApp);
+const storageService = new StorageService(firebaseApp);
 export let persistor = persistStore(store);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -18,7 +20,7 @@ root.render(
    <ThemeProvider theme={theme}>
       <Provider store={store}>
          <PersistGate persistor={persistor}>
-            <App authService={authService} />
+            <App authService={authService} storageService={storageService} />
          </PersistGate>
       </Provider>
    </ThemeProvider>,

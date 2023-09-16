@@ -3,11 +3,11 @@ import GlobalStyles from './styles/GlobalStyles';
 import { BrowserRouter } from 'react-router-dom';
 import Pages from './pages/Pages';
 
-const App = ({ authService, searchService }) => {
+const App = ({ authService, storageService }) => {
    return (
       <BrowserRouter>
          <GlobalStyles />
-         <Pages authService={authService} searchService={searchService} />
+         <Pages authService={authService} storageService={storageService} />
       </BrowserRouter>
    );
 };
