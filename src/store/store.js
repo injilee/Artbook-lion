@@ -7,6 +7,7 @@ const initialState = {
    name: '',
    uid: '',
    account: '',
+   imageURL: '',
 };
 
 // 로그인한 사용자 정보 저장하기
@@ -24,6 +25,9 @@ export const userSlice = createSlice({
       clearUser: state => {
          state.user = null;
       },
+      uploadImageURL: (state, action) => {
+         state.imageURL = action.payload.imageURL;
+      },
    },
    extraReducers: builder => {
       builder.addCase(PURGE, () => {
@@ -35,7 +39,7 @@ export const userSlice = createSlice({
 const persistConfig = {
    key: 'root',
    storage,
-   whitelist: ['name', 'uid', 'account'],
+   whitelist: ['name', 'uid', 'account', 'imageURL'],
 };
 
 const persistedReducer = persistReducer(persistConfig, userSlice.reducer);
@@ -63,7 +67,7 @@ const searchResultsPersistConfig = {
 
 const persistedSearchResultsyReducer = persistReducer(searchResultsPersistConfig, searchBookSlice.reducer);
 
-export const { setUser, clearUser } = userSlice.actions;
+export const { setUser, clearUser, uploadImageURL } = userSlice.actions;
 export const { setResults, resetResults } = searchBookSlice.actions;
 
 export default configureStore({
