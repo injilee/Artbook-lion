@@ -3,7 +3,6 @@ import * as S from './Profile.style';
 import { useNavigate } from 'react-router-dom';
 import { MdArrowBackIos } from 'react-icons/md';
 import NavigationBar from '../../components/navigation-bar/NavigationBar';
-import testUserInfo from '../community/TestUserInfo';
 import Aside from '../post/Aside';
 import { useDispatch, useSelector } from 'react-redux';
 import store, { clearUser } from '../../store/store';
@@ -14,9 +13,14 @@ const Profile = ({ authService }) => {
    const dispatch = useDispatch();
    const name = useSelector(state => state.user.name);
    const account = useSelector(state => state.user.account);
+   const url = useSelector(state => state.user.imageURL);
 
    const backPage = () => {
       navigate(-1);
+   };
+
+   const goToLogin = () => {
+      navigate('/login');
    };
 
    const onLogout = async () => {
@@ -24,7 +28,7 @@ const Profile = ({ authService }) => {
       dispatch(clearUser());
       persistStore(store).purge();
       alert('정상적으로 로그아웃 되었습니다.');
-      navigate('/login');
+      goToLogin();
    };
 
    return (
@@ -42,7 +46,7 @@ const Profile = ({ authService }) => {
             <S.ProfileContent>
                <S.ProfileHeader>
                   <S.Profile>
-                     <img src={testUserInfo[0].userProfile} alt="프로필" />
+                     <img src={url} alt="프로필" />
                      <strong>{name}</strong>
                      <span>{account}</span>
                      <button onClick={() => navigate('/profile/:id/edit')}>프로필 수정</button>
@@ -54,23 +58,23 @@ const Profile = ({ authService }) => {
                </S.BookNote>
                <ul>
                   <S.PostList>
-                     <span>{testUserInfo[0].time}</span>
+                     <span>업로드 시간</span>
                      <S.PostCommentUser>
                         <S.PostCommentDetail>
-                           <img src={testUserInfo[0].userProfile} alt="유저 프로필" />
+                           <img src={url} alt="유저 프로필" />
                            <span>{name}</span>
                         </S.PostCommentDetail>
-                        <p>{testUserInfo[0].grade}</p>
+                        {/* <p>{testUserInfo[0].grade}</p> */}
                      </S.PostCommentUser>
                      <S.PostComment>
                         <S.PostCommentBook>
-                           <img src={testUserInfo[0].img} alt="책 표지" />
+                           <img src="" alt="책 표지" />
                         </S.PostCommentBook>
                         <S.PostBook>
-                           <strong>{testUserInfo[0].bookTitle}</strong>
-                           <span>{testUserInfo[0].bookAthor}</span>
+                           <strong>제목</strong>
+                           <span>저자</span>
                         </S.PostBook>
-                        <p>{testUserInfo[0].comment}</p>
+                        <p>독서평</p>
                      </S.PostComment>
                   </S.PostList>
                </ul>

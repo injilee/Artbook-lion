@@ -1,24 +1,43 @@
-import React from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import * as S from './ProfileEdit.style';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { MdArrowBackIos } from 'react-icons/md';
-import { RiImageEditLine } from 'react-icons/ri';
+import { Line } from 'rc-progress';
 import NavigationBar from '../../../components/navigation-bar/NavigationBar';
 import defaultProfile from '../../../assets/lion-img.png';
-import { useSelector } from 'react-redux';
+import { uploadImageURL } from '../../../store/store';
 
-const ProfileEdit = () => {
+const ProfileEdit = ({ storageService }) => {
+   const inputRef = useRef();
+   const dispatch = useDispatch();
    const navigate = useNavigate();
+   const [progress, setProgress] = useState(0);
+   const [isUpload, setIsUpload] = useState(false);
    const account = useSelector(state => state.user.account);
+   const url = useSelector(state => state.user.imageURL);
 
    const backPage = () => {
       navigate(-1);
    };
 
-   const successEdit = () => {
-      alert('수정이 완료되었습니다.');
-      navigate('/profile');
+   const onUploadImg = async e => {
+      const currentImg = e.target.files;
+      if (currentImg) {
+         setIsUpload(true);
+         const url = await storageService.imageUpload(currentImg[0], setProgress);
+         dispatch(uploadImageURL({ imageURL: url }));
+      }
+      setProgress(0);
+      setIsUpload(false);
    };
+
+   const onUploadImgBtnClick = useCallback(e => {
+      if (!inputRef.current) {
+         return;
+      }
+      inputRef.current.click(e);
+   }, []);
 
    return (
       <>
@@ -33,16 +52,15 @@ const ProfileEdit = () => {
          <S.ProfileEditWrapper>
             <S.Profile>
                <S.ProfileImg>
-                  <img src={defaultProfile} alt="프로필" />
-                  <button aria-label="프로필 사진 설정하기">
-                     <RiImageEditLine></RiImageEditLine>
-                  </button>
+                  <img src={url ? url : defaultProfile} alt="프로필" />
+                  <input type="file" accept="image/*" ref={inputRef} onChange={onUploadImg} />
+                  <Line percent={progress} strokeWidth={3} strokeColor="#00cc66" />
                </S.ProfileImg>
                <S.UserIdEdit>
                   <p htmlFor="name">사용자 계정</p>
                   <span>{account}</span>
                </S.UserIdEdit>
-               <button onClick={successEdit}>수정하기</button>
+               <button onClick={onUploadImgBtnClick}>{isUpload ? '업로드 중' : '이미지 변경'}</button>
             </S.Profile>
          </S.ProfileEditWrapper>
          <NavigationBar />
