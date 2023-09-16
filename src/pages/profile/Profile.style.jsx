@@ -44,6 +44,7 @@ export const HeaderTitle = styled.h1`
 // profile
 export const ProfileWrapper = styled.section`
    max-width: 26.25rem;
+   width: 26.25rem;
    display: flex;
    flex-direction: column;
    background-color: ${props => props.theme.palette.white};

@@ -11,7 +11,7 @@ export const Header = styled.div`
    align-items: center;
    width: 100%;
    height: 3.4375rem;
-   border-bottom: 1px solid ${props => props.theme.palette.lightGray};
+   border-bottom: 2px solid ${props => props.theme.palette.lightGray};
    background-color: ${props => props.theme.palette.white};
    z-index: 10;
 

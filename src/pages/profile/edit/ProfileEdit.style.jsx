@@ -67,6 +67,10 @@ export const ProfileImg = styled.div`
    position: relative;
    margin-bottom: 1.5rem;
 
+   & > input {
+      display: none;
+   }
+
    & > img {
       width: 6.5rem;
       height: 6.5rem;
@@ -103,7 +107,7 @@ export const UserIdEdit = styled.div`
    margin-bottom: 1rem;
 
    & > p {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
    }
 
    & > span {
@@ -111,6 +115,5 @@ export const UserIdEdit = styled.div`
       font-size: 0.9rem;
       color: ${props => props.theme.palette.gray};
       background-color: transparent;
-      padding: 0.5rem;
    }
 `;
