@@ -36,10 +36,19 @@ const Search = () => {
          const response = await instance.get(URL, {
             params: {
                query: query,
-               display: 20,
+               display: 60,
             },
          });
-         dispatch(setResults(response.data.items));
+         const result = response.data.items.map(item => {
+            const data = {
+               title: item.title,
+               image: item.image,
+               author: item.author,
+               description: item.description,
+            };
+            return data;
+         });
+         dispatch(setResults(result));
       } catch (error) {
          console.error(error);
       }
