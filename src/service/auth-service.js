@@ -21,19 +21,33 @@ class AuthService {
       });
    }
 
-   logout() {
-      signOut(this.firebaseAuth);
+   logout(successCallback) {
+      signOut(this.firebaseAuth).then(() => {
+         alert('정상적으로 로그아웃 되었습니다.');
+         successCallback();
+      });
    }
 
-   signIn(displayName, email, password) {
+   signIn(displayName, email, password, successCallback) {
       const auth = this.firebaseAuth;
       createUserWithEmailAndPassword(auth, email, password)
-         .then(() => {
-            updateProfile(auth.currentUser, {
+         .then(async () => {
+            await updateProfile(auth.currentUser, {
                displayName: displayName,
             });
+            alert('회원가입이 완료되었습니다.');
+            successCallback();
          })
-         .catch(error => console.log(error));
+         .catch(error => {
+            switch (error.code) {
+               case 'auth/email-already-in-use':
+                  alert('이미 가입된 회원입니다.');
+                  break;
+
+               default:
+                  break;
+            }
+         });
    }
 
    loginWithEmailAndPass(email, password) {
