@@ -7,6 +7,7 @@ import Aside from '../post/Aside';
 import { useDispatch, useSelector } from 'react-redux';
 import store, { clearUser } from '../../store/store';
 import persistStore from 'redux-persist/es/persistStore';
+import defaultProfile from '../../assets/lion-img.png';
 
 const Profile = ({ authService }) => {
    const navigate = useNavigate();
@@ -24,11 +25,11 @@ const Profile = ({ authService }) => {
    };
 
    const onLogout = async () => {
-      await authService.logout();
-      dispatch(clearUser());
-      persistStore(store).purge();
-      alert('정상적으로 로그아웃 되었습니다.');
-      goToLogin();
+      await authService.logout(() => {
+         dispatch(clearUser());
+         persistStore(store).purge();
+         goToLogin();
+      });
    };
 
    return (
@@ -46,7 +47,7 @@ const Profile = ({ authService }) => {
             <S.ProfileContent>
                <S.ProfileHeader>
                   <S.Profile>
-                     <img src={url} alt="프로필" />
+                     <img src={url ? url : defaultProfile} alt="프로필" />
                      <strong>{name}</strong>
                      <span>{account}</span>
                      <button onClick={() => navigate('/profile/:id/edit')}>프로필 수정</button>
@@ -61,7 +62,7 @@ const Profile = ({ authService }) => {
                      <span>업로드 시간</span>
                      <S.PostCommentUser>
                         <S.PostCommentDetail>
-                           <img src={url} alt="유저 프로필" />
+                           <img src={url ? url : defaultProfile} alt="유저 프로필" />
                            <span>{name}</span>
                         </S.PostCommentDetail>
                         {/* <p>{testUserInfo[0].grade}</p> */}
