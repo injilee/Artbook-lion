@@ -5,7 +5,7 @@ import { MdArrowBackIos } from 'react-icons/md';
 import NavigationBar from '../../components/navigation-bar/NavigationBar';
 import Aside from '../post/Aside';
 import { useDispatch, useSelector } from 'react-redux';
-import store, { clearUser } from '../../store/store';
+import store, { clearUser, resetResults } from '../../store/store';
 import persistStore from 'redux-persist/es/persistStore';
 import defaultProfile from '../../assets/lion-img.png';
 
@@ -27,6 +27,7 @@ const Profile = ({ authService }) => {
    const onLogout = async () => {
       await authService.logout(() => {
          dispatch(clearUser());
+         dispatch(resetResults());
          persistStore(store).purge();
          goToLogin();
       });
