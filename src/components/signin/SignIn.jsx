@@ -64,18 +64,21 @@ const SignIn = ({ authService }) => {
 
    const onSignIn = event => {
       event.preventDefault();
-      if (checked) {
-         sendUserData();
-         alert('회원가입이 완료되었습니다.');
-         navigator('/login');
-      } else {
+      if (!checked) {
          return;
+      } else {
+         sendUserData();
       }
    };
 
    const sendUserData = () => {
-      authService.signIn(userName, userEmail, userPassword);
-      console.log(userEmail, userPassword);
+      try {
+         authService.signIn(userName, userEmail, userPassword, () => {
+            navigator('/login');
+         });
+      } catch (error) {
+         console.log(error);
+      }
    };
 
    return (
