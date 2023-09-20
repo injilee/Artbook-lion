@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import store, { clearUser, resetResults } from '../../store/store';
 import persistStore from 'redux-persist/es/persistStore';
 import defaultProfile from '../../assets/lion-img.png';
+import testUserInfo from '../community/TestUserInfo';
 
 const Profile = ({ authService }) => {
    const navigate = useNavigate();
@@ -60,23 +61,23 @@ const Profile = ({ authService }) => {
                </S.BookNote>
                <ul>
                   <S.PostList>
-                     <span>업로드 시간</span>
+                     <span>{testUserInfo[0].time}</span>
                      <S.PostCommentUser>
                         <S.PostCommentDetail>
                            <img src={url ? url : defaultProfile} alt="유저 프로필" />
                            <span>{name}</span>
                         </S.PostCommentDetail>
-                        {/* <p>{testUserInfo[0].grade}</p> */}
+                        <p>{testUserInfo[0].grade}</p>
                      </S.PostCommentUser>
                      <S.PostComment>
                         <S.PostCommentBook>
-                           <img src="" alt="책 표지" />
+                           <img src={testUserInfo[0].img} alt="책 표지" />
                         </S.PostCommentBook>
                         <S.PostBook>
-                           <strong>제목</strong>
-                           <span>저자</span>
+                           <strong>{testUserInfo[0].bookTitle}</strong>
+                           <span>{testUserInfo[0].bookAthor}</span>
                         </S.PostBook>
-                        <p>독서평</p>
+                        <p>{testUserInfo[0].comment}</p>
                      </S.PostComment>
                   </S.PostList>
                </ul>
