@@ -30,37 +30,21 @@ Firebase authentication, storage
 
 # 구현 기능
 
-### [onboarding]
+|                           [onboarding]                            |                          1. 로그인                           |
+| :---------------------------------------------------------------: | :----------------------------------------------------------: |
+| <img src="readme-image/onboarding.gif" width="250" height="auto"> | <img src="readme-image/login.gif" width="250" height="auto"> |
 
-<img src="readme-image/onboarding.gif" width="250" height="auto">
+|                          2. 회원가입                          |                         3. 홈 화면                          |
+| :-----------------------------------------------------------: | :---------------------------------------------------------: |
+| <img src="readme-image/signin.gif" width="250" height="auto"> | <img src="readme-image/home.gif" width="250" height="auto"> |
 
-### [login]
+|                          4. 공지사항                          |                            5. 도서 검색                             |
+| :-----------------------------------------------------------: | :-----------------------------------------------------------------: |
+| <img src="readme-image/notice.gif" width="250" height="auto"> | <img src="readme-image/search-books.gif" width="250" height="auto"> |
 
-<img src="readme-image/login.gif" width="250" height="auto">
-
-### [signin]
-
-<img src="readme-image/singin.gif" width="250" height="auto">
-
-### [home]
-
-<img src="readme-image/home.gif" width="250" height="auto">
-
-### [notice]
-
-<img src="readme-image/notice.gif" width="250" height="auto">
-
-### [search]
-
-<img src="readme-image/search-books.gif" width="250" height="auto">
-
-### [뒤로가기 시 데이터 유지]
-
-<img src="readme-image/search-redux.gif" width="250" height="auto">
-
-### [profile edit]
-
-<img src="readme-image/profile-img.gif" width="250" height="auto">
+|                5.1. 도서 검색(뒤로가기 데이터 유지)                 |                           6. 프로필 수정                           |
+| :-----------------------------------------------------------------: | :----------------------------------------------------------------: |
+| <img src="readme-image/search-redux.gif" width="250" height="auto"> | <img src="readme-image/profile-img.gif" width="250" height="auto"> |
 
 # 주요 코드
 
@@ -296,3 +280,5 @@ async function fetchData(query) {
 ```
 
 로그아웃 후에는 state에 저장된 이 값은 초기화 하여 다음 로그인 때 검색 정보가 남아있지 않게 resetResults() reducer로 초기화 했다.
+
+# 후기
