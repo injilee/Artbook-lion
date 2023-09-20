@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { MdArrowBackIos } from 'react-icons/md';
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { resetResults, setResults } from '../../store/store';
+import { setResults } from '../../store/store';
 
 const Search = () => {
    const queryRef = useRef();
@@ -19,7 +19,6 @@ const Search = () => {
 
    const backPage = () => {
       navigate(-1);
-      dispatch(resetResults());
    };
 
    const instance = axios.create({
